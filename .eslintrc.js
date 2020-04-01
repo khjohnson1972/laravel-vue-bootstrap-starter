@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
+    'plugin:vue/recommended',
     'standard'
   ],
   globals: {
@@ -22,6 +23,7 @@ module.exports = {
     'vue'
   ],
   rules: {
-    "indent": ["error", 4]
+    "indent": ["error", 4],
+    "vue/html-indent": ["warn", 4]
   }
 }

@@ -49585,9 +49585,12 @@ files.keys().map(function (key) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+/* eslint-disable no-unused-vars */
+
 var app = new window.Vue({
   el: '#app'
 });
+/* eslint-enable no-unused-vars */
 
 /***/ }),
 
