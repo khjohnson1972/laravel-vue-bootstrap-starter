@@ -10,7 +10,10 @@ module.exports = {
   ],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
+    axios: true,
+    $: true,
+    Vue: true
   },
   parserOptions: {
     ecmaVersion: 2018
@@ -19,5 +22,6 @@ module.exports = {
     'vue'
   ],
   rules: {
+    "indent": ["error", 4]
   }
 }
