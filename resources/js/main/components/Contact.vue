@@ -11,21 +11,21 @@
                 <label for="email">Email address</label>
                 <input
                     id="email"
-                    v-model="$v.form.email.$model"
+                    v-model="$v.formData.email.$model"
                     type="email"
                     class="form-control"
-                    :class="{ 'is-invalid': attemptSubmit && $v.form.email.$invalid }"
+                    :class="{ 'is-invalid': attemptSubmit && $v.formData.email.$invalid, 'is-valid': attemptSubmit && !$v.formData.email.$invalid }"
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
                 >
                 <div
-                    v-if="!$v.form.email.required && attemptSubmit"
+                    v-if="!$v.formData.email.required && attemptSubmit"
                     class="invalid-feedback"
                 >
                     This field is required
                 </div>
                 <div
-                    v-if="!$v.form.email.email && attemptSubmit"
+                    v-if="!$v.formData.email.email && attemptSubmit"
                     class="invalid-feedback"
                 >
                     Enter a valid email
@@ -53,13 +53,13 @@ export default {
     data () {
         return {
             attemptSubmit: false,
-            form: {
+            formData: {
                 email: ''
             }
         }
     },
     validations: {
-        form: {
+        formData: {
             email: { required, email }
         }
     },
