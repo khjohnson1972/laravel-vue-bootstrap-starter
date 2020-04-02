@@ -3,24 +3,23 @@
 ERRORS=0
 
 # for linting js files
-#function lintit () {
-#  echo "\r\n---- ESLINT ----\r"
+function lintit () {
+  echo -e "\n---- ESLINT ----\n"
 
-#  OUTPUT=$(git diff HEAD^ --name-only | grep -E '(.vue|.js)$')
+  OUTPUT=$(git diff HEAD^ --name-only | grep -E '(.vue|.js)$')
 
-#  OUTPUT=${OUTPUT//.eslintrc.js/}
+  OUTPUT=${OUTPUT//.eslintrc.js/}
+  a=("${OUTPUT}")
 
-#  a=("${(f)OUTPUT}")
+  e=$(npx eslint -c .eslintrc.js $a)
+  echo -e $e
 
-#  e=$(npx eslint -c .eslintrc.js $a)
-#  echo $e
-
-#  if [[ "$e" != "" ]]; then
-#    echo "ERROR: Check eslint hints."
-#    ERRORS=1
-#  fi
-#}
-#lintit
+  if [[ "$e" != "" ]]; then
+    echo "ERROR: Check eslint hints."
+    ERRORS=1
+  fi
+}
+lintit
 
 # for linting php files
 function phplint () {
@@ -52,8 +51,8 @@ phplint
 echo -e "\r"
 
 if [[ "$ERRORS" != "0" ]]; then
-	echo -e "---- Errors were found and the commit was rejected. ---- \r\n"
-	exit 1 #reject
+  echo -e "---- Errors were found and the commit was rejected. ---- \r\n"
+  exit 1 #reject
 else
-	exit 0 #accept
+  exit 0 #accept
 fi
