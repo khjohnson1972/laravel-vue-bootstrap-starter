@@ -2,10 +2,11 @@
     <div class="mt-10">
         <h5>Example Component for &lt;Contact&gt;</h5>
         <form>
+            <!-- Email -->
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="email">Email address</label>
                 <input
-                    id="exampleInputEmail1"
+                    id="email"
                     type="email"
                     class="form-control"
                     aria-describedby="emailHelp"
@@ -16,29 +17,54 @@
                     class="form-text text-muted"
                 >We'll never share your email with anyone else.</small>
             </div>
+
+            <!-- Name -->
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label for="name">Name</label>
                 <input
-                    id="exampleInputPassword1"
-                    type="password"
+                    id="name"
+                    type="text"
                     class="form-control"
-                    placeholder="Password"
+                    placeholder="Enter name"
                 >
             </div>
-            <div class="form-check">
+
+            <!-- Company -->
+            <div class="form-group">
+                <label for="company">Company</label>
                 <input
-                    id="exampleCheck1"
-                    type="checkbox"
-                    class="form-check-input"
+                    id="company"
+                    type="text"
+                    class="form-control"
+                    placeholder="Company"
                 >
-                <label
-                    class="form-check-label"
-                    for="exampleCheck1"
-                >Check me out</label>
             </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input
+                    id="phone"
+                    type="text"
+                    class="form-control"
+                    placeholder="Phone"
+                >
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                    id="message"
+                    class="form-control"
+                    placeholder="Message"
+                >
+            </div>
+
             <button
                 type="submit"
                 class="btn btn-primary"
+                @click="onSubmit"
             >
                 Submit
             </button>
@@ -48,7 +74,8 @@
 <script>
 export default {
     methods: {
-        onSubmit: function () {
+        onSubmit: function (e) {
+            e.preventDefault()
             alert('here')
         }
     }
