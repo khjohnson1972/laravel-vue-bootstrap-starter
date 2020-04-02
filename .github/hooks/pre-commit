@@ -4,13 +4,12 @@ ERRORS=0
 
 # for linting js files
 function lintit () {
-  echo -e "\n---- ESLINT ----\n"
+  echo -e "\n------------------------ ESLINT ------------------------\n"
 
   OUTPUT=$(git diff HEAD --name-only | grep -E '(.vue|.js)$')
 
   OUTPUT=${OUTPUT//.eslintrc.js/}
   a=("${OUTPUT}")
-  echo $a
 
   if [[ $a == "" ]]; then
     return
@@ -18,7 +17,8 @@ function lintit () {
   e=$(npx eslint -c .eslintrc.js $a)
 
   if [[ "$e" != "" ]]; then
-    echo "ERROR: Check eslint hints."
+    echo -e $e
+    echo -e "\nERROR: Check eslint hints."
     ERRORS=1
   fi
 }
