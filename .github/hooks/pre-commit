@@ -4,7 +4,7 @@ ERRORS=0
 
 # for linting js files
 function lintit () {
-  echo -e "\n------------------------ ESLINT ------------------------\n"
+  echo -e "\n ------------------------ ESLINT ------------------------\n"
 
   OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.vue|.js)$')
 
