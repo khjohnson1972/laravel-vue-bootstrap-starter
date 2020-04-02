@@ -59,6 +59,7 @@
                     class="form-control"
                     placeholder="Message"
                 >
+                </textarea>
             </div>
 
             <button
