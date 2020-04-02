@@ -6,11 +6,11 @@ ERRORS=0
 function lintit () {
   echo -e "\n---- ESLINT ----\n"
 
-  OUTPUT=$(git diff HEAD^ --name-only | grep -E '(.vue|.js)$')
+  OUTPUT=$(git diff HEAD --name-only | grep -E '(.vue|.js)$')
 
   OUTPUT=${OUTPUT//.eslintrc.js/}
   a=("${OUTPUT}")
-
+  #try this
   e=$(npx eslint -c .eslintrc.js $a)
   echo -e $e
 
