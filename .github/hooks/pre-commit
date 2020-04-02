@@ -1,0 +1,59 @@
+#!/bin/bash
+
+ERRORS=0
+
+# for linting js files
+#function lintit () {
+#  echo "\r\n---- ESLINT ----\r"
+
+#  OUTPUT=$(git diff HEAD^ --name-only | grep -E '(.vue|.js)$')
+
+#  OUTPUT=${OUTPUT//.eslintrc.js/}
+
+#  a=("${(f)OUTPUT}")
+
+#  e=$(npx eslint -c .eslintrc.js $a)
+#  echo $e
+
+#  if [[ "$e" != "" ]]; then
+#    echo "ERROR: Check eslint hints."
+#    ERRORS=1
+#  fi
+#}
+#lintit
+
+# for linting php files
+function phplint () {
+  echo -e "\n ------------------------ PHP LINT ------------------------ \r\n"
+  echo $(php -v)
+  echo -e "\r"
+
+  OUTPUT=$(git diff HEAD^ --name-only | grep -E '(.php)$')
+
+  if [[ "$OUTPUT" = "" ]]; then
+    return
+  fi
+
+  for i in $(git diff HEAD^ --name-only | grep -E '(.php)$')
+    do
+    p=$(php -l $i)
+
+    if [[ "$p" != *"No syntax errors detected"* ]]; then
+      echo -e "\n"$i - $p
+    fi
+
+    if [[ "$p" != *"No syntax errors detected"* && ERRORS != 1 ]]; then
+      ERRORS="1"
+    fi
+  done
+}
+phplint
+
+echo -e "\r"
+
+if [[ "$ERRORS" != "0" ]]; then
+	echo -e "---- Errors were found and the commit was rejected. ---- \r\n"
+	exit 1 #reject
+else
+	exit 0 #accept
+fi

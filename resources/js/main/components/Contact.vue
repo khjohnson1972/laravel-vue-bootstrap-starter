@@ -1,5 +1,6 @@
 <template>
     <div class="mt-10">
+        <h5>Example Component &lt;Contact&gt;</h5>
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>

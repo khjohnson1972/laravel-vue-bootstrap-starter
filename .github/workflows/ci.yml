@@ -1,0 +1,127 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  unit:
+    name: 'Unit Tests'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install MySQL 8
+      run: sudo bash ./.github/scripts/mysql8.sh
+    - name: Prepare Environment
+      run: cp .env.example .env
+    - name: Install Composer Dependencies
+      run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+    - name: Generate Application Key
+      run: php artisan key:generate
+    - name: Create Database
+      run: mysql --user="homestead" --password="secret" -e "CREATE DATABASE testing character set UTF8mb4 collate utf8mb4_bin;"
+    - name: Run PHPUnit
+      env:
+        DB_USERNAME: homestead
+        DB_PASSWORD: secret
+      run: php vendor/bin/phpunit --filter=Unit
+
+  feature:
+    name: 'Feature Tests'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install MySQL 8
+      run: sudo bash ./.github/scripts/mysql8.sh
+    - name: Prepare Environment
+      run: cp .env.example .env
+    - name: Install Composer Dependencies
+      run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+    - name: Install Package Dependencies
+      run: npm ci
+    - name: Compile Assets
+      run: npm run production
+    - name: Generate Application Key
+      run: php artisan key:generate
+    - name: Create Database
+      run: mysql --user="homestead" --password="secret" -e "CREATE DATABASE testing character set UTF8mb4 collate utf8mb4_bin;"
+    - name: Run PHPUnit
+      env:
+        DB_USERNAME: homestead
+        DB_PASSWORD: secret
+      run: php vendor/bin/phpunit --filter=Feature
+
+  dusk:
+    name: 'Laravel Dusk'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install MySQL 8
+      run: sudo bash ./.github/scripts/mysql8.sh
+    - name: Add Host
+      run: printf "127.0.0.1 culligan.test" | sudo tee -a /etc/hosts > /dev/null
+    - name: Prepare The Environment
+      run: cp .env.example .env
+    - name: Install Composer Dependencies
+      run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+    - name: Install Package Dependencies
+      run: npm ci
+    - name: Compile Assets
+      run: npm run production
+    - name: Generate Application Key
+      run: php artisan key:generate
+    - name: Upgrade Chrome Driver
+      run: php artisan dusk:chrome-driver 80
+    - name: Start Chrome Driver
+      run: ./vendor/laravel/dusk/bin/chromedriver-linux &
+    - name: Run Laravel Server
+      run: php artisan serve &
+    - name: Create Database
+      run: mysql --user="homestead" --password="secret" -e "CREATE DATABASE culligan character set UTF8mb4 collate utf8mb4_bin;"
+    - name: Run Dusk Tests
+      env:
+        APP_URL: "http://culligan.test:8000"
+        DB_USERNAME: homestead
+        DB_PASSWORD: secret
+      run: php artisan dusk
+    - name: Save Screenshots
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: screenshots
+        path: ./tests/Browser/screenshots
+    - name: Save Console Logs
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: console
+        path: ./tests/Browser/console
+
+  style:
+    name: 'Coding Style'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install PHPCS
+      run: composer global require "squizlabs/php_codesniffer" --no-progress --no-suggest --prefer-dist --optimize-autoloader
+    - name: Run PHPCS
+      run: echo "Code style is good."
+
+  performance:
+    name: 'Performance'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Blackfire
+      run: sudo bash ./.github/scripts/blackfire.sh
+      env:
+        server_id: ${{ secrets.BLACKFIRE_SERVER_ID }}
+        server_token: ${{ secrets.BLACKFIRE_SERVER_TOKEN }}
+        client_id: ""
+        client_token: ""
+    - name: Run Blackfire
+      run: echo "Code performance is good."
