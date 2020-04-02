@@ -18,7 +18,7 @@ function lintit () {
   e=$(npx eslint -c .eslintrc.js $a)
 
   if [[ "$e" != "" ]]; then
-    echo -e $e
+    echo -e "$e"
     echo -e "\nERROR: Check eslint hints."
     ERRORS=1
   fi
@@ -56,28 +56,18 @@ phplint
 function phpcs () {
   echo -e "\n ------------------------ PHPCS ------------------------ \r"
 
-  OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
+  p=$(php ./vendor/bin/phpcs -qp --standard=PSR2 app/*)
 
-  if [[ "$OUTPUT" = "" ]]; then
-    return
-  fi
-
-  for i in $(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
-    do
-    p=$(php ./vendor/bin/phpcs --standard=PSR2 $i)
-
-    if [[ "$p" != *""* ]]; then
-      echo -e "\n"$i - $p
+    if [[ "$p" != "" ]]; then
+      echo -e "\n$i - $p"
     fi
 
-    if [[ "$p" != *""* && ERRORS != 1 ]]; then
+    if [[ "$p" != "" && ERRORS != 1 ]]; then
       ERRORS="1"
     fi
-  done
+    return
 }
 phpcs
-
-
 
 echo -e "\r"
 
