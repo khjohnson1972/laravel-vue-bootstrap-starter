@@ -6,7 +6,7 @@ ERRORS=0
 function lintit () {
   echo -e "\n------------------------ ESLINT ------------------------\n"
 
-  OUTPUT=$(git diff HEAD --name-only | grep -E '(.vue|.js)$')
+  OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.vue|.js)$')
 
   OUTPUT=${OUTPUT//.eslintrc.js/}
   a=("${OUTPUT}")
@@ -14,6 +14,7 @@ function lintit () {
   if [[ $a == "" ]]; then
     return
   fi
+
   e=$(npx eslint -c .eslintrc.js $a)
 
   if [[ "$e" != "" ]]; then
@@ -30,7 +31,7 @@ function phplint () {
   echo $(php -v)
   echo -e "\r"
 
-  OUTPUT=$(git diff HEAD --name-only | grep -E '(.php)$')
+  OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
 
   if [[ "$OUTPUT" = "" ]]; then
     return
