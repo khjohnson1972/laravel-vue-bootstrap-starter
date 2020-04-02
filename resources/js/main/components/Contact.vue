@@ -49,7 +49,7 @@
 export default {
     methods: {
         onSubmit: function () {
-            alert('here');
+            alert('here');;
         }
     }
 }
