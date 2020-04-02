@@ -4,9 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap')
+import './bootstrap'
+import Vuelidate from 'vuelidate'
 
 window.Vue = require('vue')
+
+window.Vue.use(Vuelidate)
 
 // load jquery popper and bootstrap
 try {

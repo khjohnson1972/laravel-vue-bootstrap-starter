@@ -1,71 +1,45 @@
 <template>
     <div class="mt-10">
         <h5>Example Component for &lt;Contact&gt;</h5>
-        <form>
+        <form
+            method="post"
+            novalidate
+            @submit="checkForm"
+        >
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input
                     id="email"
+                    v-model="$v.form.email.$model"
                     type="email"
                     class="form-control"
+                    :class="{ 'is-invalid': attemptSubmit && $v.form.email.$invalid }"
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
                 >
+                <div
+                    v-if="!$v.form.email.required && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This field is required
+                </div>
+                <div
+                    v-if="!$v.form.email.email && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    Enter a valid email
+                </div>
+
                 <small
                     id="emailHelp"
                     class="form-text text-muted"
                 >We'll never share your email with anyone else.</small>
             </div>
 
-            <!-- Name -->
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input
-                    id="name"
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter name"
-                >
-            </div>
-
-            <!-- Company -->
-            <div class="form-group">
-                <label for="company">Company</label>
-                <input
-                    id="company"
-                    type="text"
-                    class="form-control"
-                    placeholder="Company"
-                >
-            </div>
-
-            <!-- Phone -->
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input
-                    id="phone"
-                    type="text"
-                    class="form-control"
-                    placeholder="Phone"
-                >
-            </div>
-
-            <!-- Message -->
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea
-                    id="message"
-                    class="form-control"
-                    placeholder="Message"
-                >
-                </textarea>
-            </div>
-
             <button
                 type="submit"
                 class="btn btn-primary"
-                @click="onSubmit"
             >
                 Submit
             </button>
@@ -73,8 +47,50 @@
     </div>
 </template>
 <script>
+import { required, email } from 'vuelidate/lib/validators'
+
 export default {
+    data () {
+        return {
+            attemptSubmit: false,
+            form: {
+                email: ''
+            }
+        }
+    },
+    validations: {
+        form: {
+            email: { required, email }
+        }
+    },
     methods: {
+        checkForm: function (e) {
+            e.preventDefault()
+            this.attemptSubmit = true
+
+            if (this.name && this.phone && this.company && this.email && this.message) {
+                return true
+            }
+
+            this.errors = {}
+
+            if (!this.email) {
+                this.missingEmail = true
+                this.errors.email = 'Please enter your email.'
+            }
+            if (!this.name) {
+                this.errors.name = 'Please enter your name.'
+            }
+            if (!this.phone) {
+                this.errors.phone = 'Please enter your phone.'
+            }
+            if (!this.company) {
+                this.errors.company = 'Please enter your company.'
+            }
+            if (!this.message) {
+                this.errors.message = 'Please provide some message.'
+            }
+        },
         onSubmit: function (e) {
             e.preventDefault()
             alert('here')
