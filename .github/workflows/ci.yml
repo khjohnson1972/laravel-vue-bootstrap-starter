@@ -62,4 +62,4 @@ jobs:
     - name: Install PHPCS
       run: composer global require squizlabs/php_codesniffer
     - name: Run PHPCS
-      run: phpcs app/ --standard=PSR2
+      run: ~/.composer/vendor/bin/phpcs app/ --standard=PSR2
