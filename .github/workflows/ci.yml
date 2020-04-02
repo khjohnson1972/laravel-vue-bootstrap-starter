@@ -60,6 +60,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install PHPCS
-      run: composer global require "squizlabs/php_codesniffer" --no-progress --no-suggest --prefer-dist --optimize-autoloader
+      run: composer global require squizlabs/php_codesniffer
     - name: Run PHPCS
       run: phpcs app/ --standard=PSR2
