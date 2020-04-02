@@ -10,9 +10,12 @@ function lintit () {
 
   OUTPUT=${OUTPUT//.eslintrc.js/}
   a=("${OUTPUT}")
-  #try this
+  echo $a
+
+  if [[ $a == "" ]]; then
+    return
+  fi
   e=$(npx eslint -c .eslintrc.js $a)
-  echo -e $e
 
   if [[ "$e" != "" ]]; then
     echo "ERROR: Check eslint hints."
@@ -27,7 +30,7 @@ function phplint () {
   echo $(php -v)
   echo -e "\r"
 
-  OUTPUT=$(git diff HEAD^ --name-only | grep -E '(.php)$')
+  OUTPUT=$(git diff HEAD --name-only | grep -E '(.php)$')
 
   if [[ "$OUTPUT" = "" ]]; then
     return
