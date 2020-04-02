@@ -2,7 +2,8 @@ module.exports = {
   env: {
     browser: true,
     commonjs: true,
-    es6: true
+    es6: true,
+    jest: true
   },
   extends: [
     'plugin:vue/essential',
@@ -24,6 +25,7 @@ module.exports = {
   ],
   rules: {
     "indent": ["error", 4],
-    "vue/html-indent": ["warn", 4]
+    "vue/html-indent": ["warn", 4],
+    "vue/html-self-closing": ["off"]
   }
 }

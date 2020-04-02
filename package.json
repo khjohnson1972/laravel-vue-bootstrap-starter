@@ -9,9 +9,19 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "lint": "npx eslint ./resources/js/* --ext .vue --ext .js; exit 0",
-        "lint-fix": "npx eslint --fix ./resources/js/* --ext .vue --ext .js; exit 0"
+        "lint-fix": "npx eslint --fix ./resources/js/* --ext .vue --ext .js; exit 0",
+        "test:unit": "cross-env NODE_ENV=test vue-cli-service test:unit --verbose=true",
+        "test:unit-update-snapshots": "cross-env NODE_ENV=test vue-cli-service test:unit --verbose=true --updateSnapshot=true",
+        "test:unit-watch": "cross-env NODE_ENV=test vue-cli-service test:unit --watch --collectCoverage=false",
+        "test:unit-ci": "cross-env NODE_ENV=test vue-cli-service test:unit --silent=true --verbose=false --collectCoverage=false --ci=true"
     },
     "devDependencies": {
+        "@vue/cli-plugin-unit-jest": "^4.2.3",
+        "@vue/cli-service": "^4.2.3",
+        "@vue/test-utils": "^1.0.0-beta.32",
+        "babel-core": "^6.26.3",
+        "babel-jest": "^25.2.6",
+        "babel-preset-env": "^1.7.0",
         "eslint": "^6.8.0",
         "eslint-config-airbnb-base": "^14.1.0",
         "eslint-config-standard": "^14.1.1",
@@ -20,7 +30,9 @@
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^4.0.1",
         "eslint-plugin-vue": "^6.2.2",
-        "laravel-mix": "^5.0.1"
+        "jest": "^25.2.6",
+        "laravel-mix": "^5.0.1",
+        "vue-jest": "^3.0.5"
     },
     "dependencies": {
         "axios": "^0.19",
