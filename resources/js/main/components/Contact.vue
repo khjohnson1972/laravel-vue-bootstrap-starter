@@ -87,44 +87,44 @@
 import { required, email } from 'vuelidate/lib/validators'
 
 export default {
-    data: function () {
-        return {
-            formData: {
-                email: '',
-                name: ''
-            },
-            attemptSubmit: false,
-            submitStatus: null
-        }
-    },
-    validations: {
-        formData: {
-            email: { required, email },
-            name: { required }
-        }
-    },
-    methods: {
-        submit: function (e) {
-            e.preventDefault()
-            this.attemptSubmit = true
-
-            this.$v.$touch()
-
-            if (this.$v.$invalid) {
-                this.submitStatus = 'ERROR'
-            } else {
-                // do your submit logic here
-                this.submitStatus = 'PENDING'
-                setTimeout(() => {
-                    this.submitStatus = 'OK'
-                    this.clearForm()
-                }, 500)
-            }
-        },
-        clearForm: function () {
-            this.formData.name = ''
-            this.formData.email = ''
-        }
+  data: function () {
+    return {
+      formData: {
+        email: '',
+        name: ''
+      },
+      attemptSubmit: false,
+      submitStatus: null
     }
+  },
+  validations: {
+    formData: {
+      email: { required, email },
+      name: { required }
+    }
+  },
+  methods: {
+    submit: function (e) {
+      e.preventDefault()
+      this.attemptSubmit = true
+
+      this.$v.$touch()
+
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
+        // do your submit logic here
+        this.submitStatus = 'PENDING'
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+          this.clearForm()
+        }, 500)
+      }
+    },
+    clearForm: function () {
+      this.formData.name = ''
+      this.formData.email = ''
+    }
+  }
 }
 </script>

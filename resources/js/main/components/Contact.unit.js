@@ -1,46 +1,40 @@
 // resources/js/main/components/Contact.vue
-import { createLocalVue, shallowMount } from '@vue/test-utils'
 import Contact from './Contact.vue'
-import Vuelidate from 'vuelidate'
 
 describe('Contact.vue Component', () => {
-    const localVue = createLocalVue()
-    localVue.use(Vuelidate)
-
-    let wrapper
-
-    // creates a new wrapper after each test
-    beforeEach(() => {
-        wrapper = shallowMount(Contact, {
-            localVue,
-            mocks: {},
-            stubs: {}
-        })
+  let wrapper = null
+  // creates a new wrapper after each test
+  beforeEach(() => {
+    wrapper = shallowMount(Contact, {
+      ...createComponentMocks()
     })
+  })
 
-    // destroy the wrapper after each test
-    afterEach(() => {
-        wrapper.destroy()
+  // destroy the wrapper after each test
+  afterEach(() => {
+    wrapper.destroy()
+  })
+
+  test('exports a valid component', () => {
+    expect(Contact).toBeAComponent()
+  })
+
+  test('matches snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  test('clearForm() reset data', () => {
+    wrapper.setData({
+      formData: {
+        name: 'test',
+        email: 'test'
+      }
     })
+    wrapper.vm.clearForm()
+    expect(wrapper.vm.formData.email).toBe('')
+  })
 
-    test('Should mount without crashing', () => {
-        expect(wrapper).toMatchSnapshot()
-    })
-
-    test('Test clearForm()', () => {
-        wrapper.setData({
-            formData: {
-                name: 'test',
-                email: 'test'
-            }
-        })
-        // run the calculation
-        wrapper.vm.clearForm()
-
-        expect(wrapper.vm.formData.email).toBe('')
-    })
-
-    /*
+  /*
     test('Test calculateBusinessHydration()', () => {
         wrapper.setData({
             business_days: 5,

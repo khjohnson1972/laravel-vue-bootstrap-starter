@@ -13,9 +13,9 @@ window.Vue.use(Vuelidate)
 
 // load jquery popper and bootstrap
 try {
-    window.Popper = require('popper.js').default
-    window.$ = window.jQuery = require('jquery')
-    require('bootstrap')
+  window.Popper = require('popper.js').default
+  window.$ = window.jQuery = require('jquery')
+  require('bootstrap')
 } catch (e) {}
 
 /**
@@ -38,6 +38,6 @@ files.keys().map(key => window.Vue.component(key.split('/').pop().split('.')[0],
  */
 /* eslint-disable no-unused-vars */
 const app = new window.Vue({
-    el: '#app'
+  el: '#app'
 })
 /* eslint-enable no-unused-vars */
