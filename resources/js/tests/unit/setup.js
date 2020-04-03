@@ -1,5 +1,14 @@
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
+import axios from 'axios'
+
+// ===
+// Configure Axios
+// ===
+
+// Force Axios to use the XHR adapter so that it behaves
+// more like it would in a browser environment.
+axios.defaults.adapter = require('axios/lib/adapters/xhr')
 
 // ===
 // Utility functions
