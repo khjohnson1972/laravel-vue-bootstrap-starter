@@ -87,13 +87,13 @@
 import { required, email } from 'vuelidate/lib/validators'
 
 export default {
-    data () {
+    data: function () {
         return {
-            attemptSubmit: false,
             formData: {
                 email: '',
                 name: ''
             },
+            attemptSubmit: false,
             submitStatus: null
         }
     },

@@ -1,9 +1,11 @@
 // resources/js/main/components/Contact.vue
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import Contact from './Contact.vue'
+import Vuelidate from 'vuelidate'
 
 describe('Contact.vue Component', () => {
     const localVue = createLocalVue()
+    localVue.use(Vuelidate)
 
     let wrapper
 
@@ -12,8 +14,7 @@ describe('Contact.vue Component', () => {
         wrapper = shallowMount(Contact, {
             localVue,
             mocks: {},
-            stubs: {},
-            methods: {}
+            stubs: {}
         })
     })
 
@@ -26,20 +27,20 @@ describe('Contact.vue Component', () => {
         expect(wrapper).toMatchSnapshot()
     })
 
-    test('Test calculateHomeHydration()', () => {
+    test('Test clearForm()', () => {
         wrapper.setData({
-            home_adults: 2,
-            home_teenagers: 2,
-            home_kids: 2
+            formData: {
+                name: 'test',
+                email: 'test'
+            }
         })
         // run the calculation
-        wrapper.vm.calculateHomeHydration()
+        wrapper.vm.clearForm()
 
-        expect(wrapper.vm.total_day_gallons).toEqual(0.9333333333333332)
-        expect(wrapper.vm.total_month_gallons).toEqual(wrapper.vm.total_day_gallons * 30)
-        expect(Number.isInteger(wrapper.vm.total_bottles)).toBe(true)
+        expect(wrapper.vm.formData.email).toBe('')
     })
 
+    /*
     test('Test calculateBusinessHydration()', () => {
         wrapper.setData({
             business_days: 5,
@@ -151,18 +152,5 @@ describe('Contact.vue Component', () => {
         expect(wrapper.html()).toContain('5 days')
         expect(wrapper.html()).toContain('300 employees')
         expect(wrapper.html()).toContain('recommend a bottle-free cooler')
-    })
-
-    test('Test resetForm()', () => {
-        // run the reset
-        wrapper.vm.resetForm()
-
-        expect(wrapper.vm.calculated).toBe(false)
-        expect(wrapper.vm.type).toBe(null)
-        expect(wrapper.vm.home_adults).toBe(0)
-        expect(wrapper.vm.home_kids).toBe(0)
-        expect(wrapper.vm.home_teenagers).toBe(0)
-        expect(wrapper.vm.business_employees).toBe(0)
-        expect(wrapper.vm.business_days).toBe(0)
-    })
+    })**/
 })
