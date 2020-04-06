@@ -2,6 +2,9 @@
 
 ERRORS=0
 
+echo -e "$(git status)"
+echo -e "$(git add .)"
+
 # for linting js files
 function lintit () {
   echo -e "\n ------------------------ ESLINT ------------------------\n"
