@@ -18,4 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('contacts', 'Api\\ContactController')->only(['store']);
+// Prefix all named routes with api
+Route::name('api.')->group(function () {
+    Route::apiResource('contacts', 'Api\\ContactController')->only(['store']);
+});

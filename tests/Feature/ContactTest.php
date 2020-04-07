@@ -25,7 +25,7 @@ class ContactTest extends TestCase
             'phone' => '9999999999',
             'message' => 'message'
         ];
-        $response = $this->json('POST', route('contacts.store'), $payload);
+        $response = $this->json('POST', route('api.contacts.store'), $payload);
 
         $this->assertDatabaseHas('contacts', $payload);
 
