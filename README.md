@@ -11,4 +11,4 @@ This is a starter setup for those looking to get started on a new project.
 * Phpcs and PSR2 Standard
 * Phpunit with Code Coverage
 * Git hook for pre-commit
-* Github Actions for Testing Code on Push and Pull-Requests
+* Github Actions for Testing Code on Push to Master Branch and Pull-Requests
