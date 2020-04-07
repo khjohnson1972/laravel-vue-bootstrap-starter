@@ -118,23 +118,23 @@ export default {
         }
       )
         .then(function (response) {
-        // handle success
+          // handle success
           vm.submitStatus = 'OK'
           vm.clearForm()
           vm.attemptSubmit = false
           return response
         })
         .catch(function (error) {
-        // handle error
+          // handle error
           vm.errorMessage = 'Request failed'
           vm.submitStatus = 'FAILED'
           console.log(error)
           return error
         })
-      // .then(function () {
-      // always executed
-      //  return
-      // })
+        // .then(function () {
+        // always executed
+        //  return
+        // })
     },
     submit (e) {
       this.attemptSubmit = true

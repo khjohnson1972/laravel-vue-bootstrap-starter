@@ -83,6 +83,7 @@ describe('Contact.vue Component', () => {
       expect(wrapper.html()).toContain('Thanks for your submission!')
     })
   })
+
   test('an unsuccessful request in makeRequest()', async () => {
     axios.post.mockReturnValue(Promise.reject(new Error('This is an error in the request')))
 
@@ -100,117 +101,4 @@ describe('Contact.vue Component', () => {
       expect(wrapper.vm.formData.email).toBe('test@test.com')
     })
   })
-  /*
-    test('Test calculateBusinessHydration()', () => {
-        wrapper.setData({
-            business_days: 5,
-            business_employees: 5
-        })
-        // run the calculation
-        wrapper.vm.calculateBusinessHydration()
-
-        expect(wrapper.vm.total_month_gallons).toEqual(16.666666666666668)
-        expect(Number.isInteger(wrapper.vm.total_bottles)).toBe(true)
-    })
-
-    test('Test selectDays()', () => {
-        // run the selectDays
-        wrapper.vm.selectDays(2)
-
-        expect(wrapper.vm.business_days).toEqual(2)
-    })
-
-    test('Test selectType()', () => {
-        // run the selectType
-        wrapper.vm.selectType('home')
-
-        expect(wrapper.vm.type).toBe('home')
-    })
-
-    test('Test calculate()', () => {
-        const mockMethods = {
-            calculateHomeHydration: jest.fn(),
-            calculateBusinessHydration: jest.fn()
-        }
-        const wrapper = shallowMount(Contact, {
-            localVue,
-            mocks: {},
-            stubs: {},
-            methods: mockMethods
-        })
-
-        // run the calculate
-        wrapper.vm.calculate()
-        expect(wrapper.vm.calculated).toBe(true)
-        expect(mockMethods.calculateBusinessHydration).toHaveBeenCalled()
-
-        wrapper.setData({
-            calculated: false,
-            type: 'home'
-        })
-        wrapper.vm.calculate()
-        expect(wrapper.vm.calculated).toBe(true)
-        expect(mockMethods.calculateHomeHydration).toHaveBeenCalled()
-    })
-
-    test('the output after home click contains the adult, teen and child inputs', async () => {
-        const button = wrapper.find('#home-button')
-        button.trigger('click')
-        await wrapper.vm.$nextTick()
-        expect(wrapper.html()).toContain('<input name="home_adults" type="number"')
-        expect(wrapper.html()).toContain('<input name="home_teenagers" type="number"')
-        expect(wrapper.html()).toContain('<input name="home_kids" type="number" id="home_kids"')
-    })
-
-    test('the output after business click contains the number of employees and days open button', async () => {
-        const button = wrapper.find('#business-button')
-        button.trigger('click')
-        await wrapper.vm.$nextTick().then(() => {
-            expect(wrapper.html()).toContain('<input name="business_employees" type="number"')
-            expect(wrapper.html()).toContain('<button type="button"')
-        })
-    })
-
-    test('Test display()', async () => {
-        // home tests
-        wrapper.setData({
-            type: 'home',
-            home_adults: 1,
-            home_kids: 1,
-            home_teenagers: 1
-        })
-        wrapper.vm.calculate()
-
-        await wrapper.vm.$nextTick()
-
-        expect(wrapper.html()).toContain('3 five gallon bottles')
-        expect(wrapper.html()).toContain('For home use')
-
-        // business tests
-        wrapper.setData({
-            type: 'business',
-            business_days: 1,
-            business_employees: 1
-        })
-        wrapper.vm.calculate()
-
-        await wrapper.vm.$nextTick()
-
-        expect(wrapper.html()).toContain('1 five gallon bottle')
-        expect(wrapper.html()).toContain('1 employee')
-        expect(wrapper.html()).toContain('1 day')
-        expect(wrapper.html()).toContain('For business use')
-
-        wrapper.setData({
-            type: 'business',
-            business_days: 5,
-            business_employees: 300
-        })
-        wrapper.vm.calculate()
-
-        await wrapper.vm.$nextTick()
-        expect(wrapper.html()).toContain('5 days')
-        expect(wrapper.html()).toContain('300 employees')
-        expect(wrapper.html()).toContain('recommend a bottle-free cooler')
-    })**/
 })
