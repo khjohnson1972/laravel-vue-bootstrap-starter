@@ -198,6 +198,7 @@ export default {
       }
     },
     clearForm: function () {
+      this.$v.$reset()
       Object.assign(this.$data, this.$options.data.apply(this))
     }
   }
