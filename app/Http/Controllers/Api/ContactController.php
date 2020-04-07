@@ -13,9 +13,14 @@ class ContactController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): string
     {
-        $contact = new Contact();
+        $validatedData = $request->validate([
+            'name'  => ['required', 'max:255'],
+            'email' => ['required', 'email'],
+        ]);
+
+        $contact = new Contact;
         $contact->name = $request->get('name');
         $contact->email = $request->get('email');
         $contact->save();

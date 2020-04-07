@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ContactTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, RefreshDatabase;
 
     /**
      * A basic feature test example.
@@ -20,6 +20,8 @@ class ContactTest extends TestCase
     {
         $payload = ['email' => 'testlogin@user.com', 'name' => 'Blah'];
         $response = $this->json('POST', '/api/contacts', $payload);
+
+        $this->assertDatabaseHas('contacts', $payload);
 
         $response->assertStatus(200)
         ->assertJsonStructure([

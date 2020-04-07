@@ -56,6 +56,7 @@
                 >We'll never share your email with anyone else.</small>
             </div>
             <button
+                id="submit-button"
                 type="submit"
                 class="btn btn-primary"
                 :disabled="submitStatus === 'PENDING'"
@@ -85,10 +86,12 @@
 </template>
 <script>
 import { required, email } from 'vuelidate/lib/validators'
+import axios from 'axios'
 
 export default {
   data: function () {
     return {
+      errorMessage: null,
       formData: {
         email: '',
         name: ''
@@ -104,8 +107,36 @@ export default {
     }
   },
   methods: {
-    submit: function (e) {
-      e.preventDefault()
+    async makeRequest () {
+      const vm = this
+      // send a POST request
+      return axios.post(
+        '/api/contacts',
+        {
+          name: this.formData.name,
+          email: this.formData.email
+        }
+      )
+        .then(function (response) {
+        // handle success
+          vm.submitStatus = 'OK'
+          vm.clearForm()
+          vm.attemptSubmit = false
+          return response
+        })
+        .catch(function (error) {
+        // handle error
+          vm.errorMessage = 'Request failed'
+          vm.submitStatus = 'FAILED'
+          console.log(error)
+          return error
+        })
+      // .then(function () {
+      // always executed
+      //  return
+      // })
+    },
+    submit (e) {
       this.attemptSubmit = true
 
       this.$v.$touch()
@@ -115,15 +146,13 @@ export default {
       } else {
         // do your submit logic here
         this.submitStatus = 'PENDING'
-        setTimeout(() => {
-          this.submitStatus = 'OK'
-          this.clearForm()
-        }, 500)
+        this.makeRequest()
       }
     },
     clearForm: function () {
       this.formData.name = ''
       this.formData.email = ''
+      this.attemptSubmit = false
     }
   }
 }
