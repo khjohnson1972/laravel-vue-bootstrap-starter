@@ -31,7 +31,9 @@ describe('Contact.vue Component', () => {
     wrapper.setData({
       formData: {
         name: 'test',
-        email: 'test'
+        email: 'test',
+        company: 'test',
+        message: 'message'
       }
     })
     wrapper.vm.clearForm()
@@ -57,7 +59,9 @@ describe('Contact.vue Component', () => {
     wrapper.setData({
       formData: {
         name: 'John Doe',
-        email: 'test@test.com'
+        email: 'test@test.com',
+        company: 'test',
+        message: 'message'
       }
     })
 
@@ -68,7 +72,7 @@ describe('Contact.vue Component', () => {
     wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.submitStatus).toBe('PENDING')
       expect(wrapper.vm.attemptSubmit).toBe(true)
-      expect(axios.post).toBeCalledWith('/api/contacts', { email: 'test@test.com', name: 'John Doe' })
+      expect(axios.post).toBeCalledWith('/api/contacts', { email: 'test@test.com', name: 'John Doe', message: 'message', company: 'test' })
     }) // this part
   })
 
@@ -90,13 +94,15 @@ describe('Contact.vue Component', () => {
     wrapper.setData({
       formData: {
         name: 'John Doe',
-        email: 'test@test.com'
+        email: 'test@test.com',
+        company: 'test',
+        message: 'message'
       }
     })
     // return a promise because of the async call
     return wrapper.vm.makeRequest().then(() => {
       expect(wrapper.vm.submitStatus).toBe('FAILED')
-      expect(axios.post).toBeCalledWith('/api/contacts', { email: 'test@test.com', name: 'John Doe' })
+      expect(axios.post).toBeCalledWith('/api/contacts', { email: 'test@test.com', name: 'John Doe', message: 'message', company: 'test' })
       expect(wrapper.vm.formData.name).toBe('John Doe')
       expect(wrapper.vm.formData.email).toBe('test@test.com')
     })

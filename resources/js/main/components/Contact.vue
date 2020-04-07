@@ -25,6 +25,25 @@
                 </div>
             </div>
 
+            <!-- Company -->
+            <div class="form-group">
+                <label for="company">Company</label>
+                <input
+                    id="company"
+                    v-model="$v.formData.company.$model"
+                    type="text"
+                    class="form-control"
+                    :class="{ 'is-invalid': attemptSubmit && $v.formData.company.$invalid, 'is-valid': attemptSubmit && !$v.formData.company.$invalid }"
+                    placeholder="Enter company"
+                >
+                <div
+                    v-if="!$v.formData.company.required && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This field is required
+                </div>
+            </div>
+
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -55,6 +74,27 @@
                     class="form-text text-muted"
                 >We'll never share your email with anyone else.</small>
             </div>
+
+            <!-- Message -->
+            <div class="form-group">
+                <label for="name">Message</label>
+                <textarea
+                    id="message"
+                    v-model="$v.formData.message.$model"
+                    type="text"
+                    class="form-control"
+                    :class="{ 'is-invalid': attemptSubmit && $v.formData.message.$invalid, 'is-valid': attemptSubmit && !$v.formData.message.$invalid }"
+                    placeholder="Enter a message"
+                />
+                <div
+                    v-if="!$v.formData.message.required && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This field is required
+                </div>
+            </div>
+
+            <!-- Button -->
             <button
                 id="submit-button"
                 type="submit"
@@ -63,6 +103,10 @@
             >
                 Submit
             </button>
+            &nbsp;<a
+                href="javascript:void(0)"
+                @click="clearForm"
+            >Clear</a>
             <p
                 v-if="submitStatus === 'OK'"
                 class="typo__p"
@@ -94,7 +138,9 @@ export default {
       errorMessage: null,
       formData: {
         email: '',
-        name: ''
+        name: '',
+        company: '',
+        message: ''
       },
       attemptSubmit: false,
       submitStatus: null
@@ -103,7 +149,9 @@ export default {
   validations: {
     formData: {
       email: { required, email },
-      name: { required }
+      name: { required },
+      company: { required },
+      message: { required }
     }
   },
   methods: {
@@ -114,14 +162,15 @@ export default {
         '/api/contacts',
         {
           name: this.formData.name,
-          email: this.formData.email
+          email: this.formData.email,
+          company: this.formData.company,
+          message: this.formData.message
         }
       )
         .then(function (response) {
           // handle success
-          vm.submitStatus = 'OK'
           vm.clearForm()
-          vm.attemptSubmit = false
+          vm.submitStatus = 'OK'
           return response
         })
         .catch(function (error) {
@@ -149,9 +198,7 @@ export default {
       }
     },
     clearForm: function () {
-      this.formData.name = ''
-      this.formData.email = ''
-      this.attemptSubmit = false
+      Object.assign(this.$data, this.$options.data.apply(this))
     }
   }
 }
