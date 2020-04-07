@@ -18,7 +18,13 @@ class ContactTest extends TestCase
      */
     public function testStoreSaved()
     {
-        $payload = ['email' => 'testlogin@user.com', 'name' => 'Blah', 'company' => 'company', 'phone' => '9999999999', 'message' => 'message'];
+        $payload = [
+            'email' => 'testlogin@user.com',
+            'name' => 'Blah',
+            'company' => 'company',
+            'phone' => '9999999999',
+            'message' => 'message'
+        ];
         $response = $this->json('POST', '/api/contacts', $payload);
 
         $this->assertDatabaseHas('contacts', $payload);
