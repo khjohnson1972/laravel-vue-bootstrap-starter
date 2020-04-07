@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Contact;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ContactController extends Controller
 {
@@ -14,7 +15,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contact = new Contact();
+        $contacts = $contact->all()->sortByDesc('created_date');
+
+        return view('admin.contacts.index', compact('contacts'));
     }
 
     /**
