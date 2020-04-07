@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Uncomment to explicitly set the routes.
+//Auth::routes(['verify' => true, 'register' => false]);
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
