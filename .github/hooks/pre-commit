@@ -2,6 +2,7 @@
 
 ERRORS=0
 
+echo -e "Commiting as $(git config user.name)"
 echo -e "$(git status)"
 echo -e "$(git add .)"
 
