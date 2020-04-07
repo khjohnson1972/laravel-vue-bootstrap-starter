@@ -18,7 +18,7 @@ class ContactTest extends TestCase
      */
     public function testStoreSaved()
     {
-        $payload = ['email' => 'testlogin@user.com', 'name' => 'Blah'];
+        $payload = ['email' => 'testlogin@user.com', 'name' => 'Blah', 'company' => 'company', 'phone' => '9999999999', 'message' => 'message'];
         $response = $this->json('POST', '/api/contacts', $payload);
 
         $this->assertDatabaseHas('contacts', $payload);
@@ -26,7 +26,10 @@ class ContactTest extends TestCase
         $response->assertStatus(200)
         ->assertJsonStructure([
             'name',
+            'company',
             'email',
+            'phone',
+            'message',
             'updated_at',
             'created_at',
             'id',

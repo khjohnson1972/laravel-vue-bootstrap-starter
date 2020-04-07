@@ -26,6 +26,10 @@ class ContactController extends Controller
         $contact = new Contact;
         $contact->name = $request->get('name');
         $contact->email = $request->get('email');
+        $contact->phone = $request->get('phone');
+        $contact->company = $request->get('company');
+        $contact->message = $request->get('message');
+
         $contact->save();
 
         return $contact->toJson();
