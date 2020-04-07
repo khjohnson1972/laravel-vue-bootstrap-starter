@@ -18,10 +18,16 @@
                     placeholder="Enter name"
                 >
                 <div
-                    v-if="!$v.formData.name.required && attemptSubmit"
+                    v-if="!$v.formData.name.maxLength && attemptSubmit"
                     class="invalid-feedback"
                 >
-                    This field is required
+                    This maximum is 255
+                </div>
+                <div
+                    v-if="!$v.formData.name.minLength && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This minimum length is 2
                 </div>
             </div>
 
@@ -41,6 +47,18 @@
                     class="invalid-feedback"
                 >
                     This field is required
+                </div>
+                <div
+                    v-if="!$v.formData.company.maxLength && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This maximum is 255
+                </div>
+                <div
+                    v-if="!$v.formData.company.minLength && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This minimum length is 2
                 </div>
             </div>
 
@@ -69,10 +87,41 @@
                     Enter a valid email
                 </div>
 
+                <div
+                    v-if="!$v.formData.email.maxLength && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This maximum is 255
+                </div>
                 <small
                     id="emailHelp"
                     class="form-text text-muted"
                 >We'll never share your email with anyone else.</small>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input
+                    id="phone"
+                    v-model="$v.formData.phone.$model"
+                    type="phone"
+                    class="form-control"
+                    :class="{ 'is-invalid': attemptSubmit && $v.formData.phone.$invalid, 'is-valid': attemptSubmit && !$v.formData.phone.$invalid }"
+                    placeholder="###-###-####"
+                >
+                <div
+                    v-if="!$v.formData.phone.required && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This field is required
+                </div>
+                <div
+                    v-if="!$v.formData.phone.maxLength && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This maximum is 255
+                </div>
             </div>
 
             <!-- Message -->
@@ -81,7 +130,6 @@
                 <textarea
                     id="message"
                     v-model="$v.formData.message.$model"
-                    type="text"
                     class="form-control"
                     :class="{ 'is-invalid': attemptSubmit && $v.formData.message.$invalid, 'is-valid': attemptSubmit && !$v.formData.message.$invalid }"
                     placeholder="Enter a message"
@@ -91,6 +139,12 @@
                     class="invalid-feedback"
                 >
                     This field is required
+                </div>
+                <div
+                    v-if="!$v.formData.message.minLength && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    Please tell us more
                 </div>
             </div>
 
@@ -109,27 +163,33 @@
             >Clear</a>
             <p
                 v-if="submitStatus === 'OK'"
-                class="typo__p"
+                class="alert alert-success mt-2"
             >
                 Thanks for your submission!
             </p>
             <p
                 v-if="submitStatus === 'ERROR'"
-                class="typo__p"
+                class="alert alert-warning mt-2"
             >
                 Please fill the form correctly.
             </p>
             <p
                 v-if="submitStatus === 'PENDING'"
-                class="typo__p"
+                class="alert alert-info mt-2"
             >
                 Sending...
+            </p>
+            <p
+                v-if="submitStatus === 'FAILED'"
+                class="alert alert-danger mt-2"
+            >
+                Failed to complete your request
             </p>
         </form>
     </div>
 </template>
 <script>
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, maxLength, minLength } from 'vuelidate/lib/validators'
 import axios from 'axios'
 
 export default {
@@ -138,6 +198,7 @@ export default {
       errorMessage: null,
       formData: {
         email: '',
+        phone: '',
         name: '',
         company: '',
         message: ''
@@ -148,10 +209,11 @@ export default {
   },
   validations: {
     formData: {
-      email: { required, email },
-      name: { required },
-      company: { required },
-      message: { required }
+      email: { required, email, maxLength: maxLength(255) },
+      phone: { required, maxLength: maxLength(255) },
+      name: { required, maxLength: maxLength(255), minLength: minLength(2) },
+      company: { required, maxLength: maxLength(255), minLength: minLength(2) },
+      message: { required, minLength: minLength(10) }
     }
   },
   methods: {
@@ -163,6 +225,7 @@ export default {
         {
           name: this.formData.name,
           email: this.formData.email,
+          phone: this.formData.phone,
           company: this.formData.company,
           message: this.formData.message
         }
