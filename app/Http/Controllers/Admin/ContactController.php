@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contact;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +14,7 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $contacts = Contact::all()->sortByDesc('created_at');
         return view('admin.contacts.index', compact('contacts'));

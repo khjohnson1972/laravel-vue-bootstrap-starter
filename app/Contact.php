@@ -16,9 +16,8 @@ class Contact extends Model
         'name', 'company', 'email', 'phone', 'message',
     ];
 
-    public function getCreatedAtAttribute($created_at): string
+    public function getCreatedAtAttribute(string $createdAt): string
     {
-        //return $created_at;
-        return Carbon::parse($created_at)->format('F jS, Y h:i:s A');
+        return Carbon::parse($createdAt)->format('F jS, Y h:i:s A');
     }
 }
