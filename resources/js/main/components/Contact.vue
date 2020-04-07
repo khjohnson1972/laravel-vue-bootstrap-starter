@@ -128,7 +128,6 @@ export default {
           // handle error
           vm.errorMessage = 'Request failed'
           vm.submitStatus = 'FAILED'
-          console.log(error)
           return error
         })
         // .then(function () {
