@@ -6,9 +6,9 @@ function gitAdd() {
     makeTitle "GIT"
     echo -e "Committing as $(git config user.name)"
     gitStatus="$(git status)"
-    echo -e "$gitStatus"
 
     if [[ "$gitStatus" != *"nothing to commit"* && "$gitStatus" != *"no changes added to commit"* ]]; then
+        echo -e "$gitStatus"
         hasChanges=1
         return $hasChanges
     fi
