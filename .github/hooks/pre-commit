@@ -6,8 +6,6 @@
 . $(dirname "$0")/functions/php-cs
 . $(dirname "$0")/functions/php-lint
 
-ERRORS=0
-
 makeTitle "GIT"
 echo -e "Committing as $(git config user.name)"
 echo -e "$(git status)"
@@ -24,7 +22,7 @@ phpcsResult=$?
 
 num=$((eslintResult + phplintResult + phpcsResult))
 
-makeTitle RESULTS
+makeTitle "RESULTS"
 
 # if the sum of the results doesn't = 0 then something went wrong
 if [[ "$num" != "0" ]]; then
