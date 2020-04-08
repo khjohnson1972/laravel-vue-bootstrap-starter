@@ -12,6 +12,6 @@ function gitAdd() {
         hasChanges=1
         return $hasChanges
     fi
-    #echo -e "$(git add .)"
+    ##echo -e "$(git add .)"
     return $hasChanges
 }
