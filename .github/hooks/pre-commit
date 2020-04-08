@@ -3,13 +3,15 @@
 # include the functions and colors
 . $(dirname "$0")/functions/bash-functions
 . $(dirname "$0")/functions/eslint
-. $(dirname "$0")/functions/git-add
 . $(dirname "$0")/functions/php-cs
 . $(dirname "$0")/functions/php-lint
 
 ERRORS=0
 
-gitAdd
+makeTitle "GIT"
+echo -e "Committing as $(git config user.name)"
+echo -e "$(git status)"
+echo -e "$(git add .)"
 
 eslint
 eslintResult=$?
