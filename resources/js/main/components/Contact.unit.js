@@ -100,8 +100,8 @@ describe('Contact.vue Component', () => {
     return wrapper.vm.makeRequest().then(() => {
       expect(wrapper.vm.submitStatus).toBe('FAILED')
       expect(axios.post).toBeCalledWith('/api/contacts', formData)
-      expect(wrapper.vm.formData.name).toBe('John Doe')
-      expect(wrapper.vm.formData.email).toBe('test@test.com')
+      expect(wrapper.vm.formData.name).toBe(formData.name)
+      expect(wrapper.vm.formData.email).toBe(formData.email)
     })
   })
 })
