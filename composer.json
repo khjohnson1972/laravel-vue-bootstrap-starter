@@ -1,7 +1,7 @@
 {
     "name": "khjohnson1972/laravel-vue-bootstrap-starter",
     "type": "project",
-    "description": "Laravel 7, Vue.js 2, Bootstrap 4, MySQL 8 Starter",
+    "description": "A starter for Laravel 7, Bootstrap 4, Vue 2, Vue Test Utils, Jest and MySQL",
     "keywords": [
         "framework",
         "laravel"
