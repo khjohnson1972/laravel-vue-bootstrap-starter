@@ -2,11 +2,23 @@
 
 This is a starter setup for those looking to get started on a new project.
 
+## Installation
+
+* git clone the repository
+* `composer install -o`
+* `npm ci`
+* setup your .env file with database credentials
+* php artisan key:generate
+* php artisan migrate
+* php artisan db:seed
+
 ## Features
 
+* Laravel Auth
 * EsLint
 * Vue-test-utils and Jest
 * Vue and Vuelidate
+* Sample Vue `<contact></contact>` Component with Tests
 * Laravel-mix
 * Phpcs and PSR2 Standard
 * Phpunit with Code Coverage
