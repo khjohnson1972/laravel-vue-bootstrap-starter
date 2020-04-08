@@ -88,6 +88,11 @@
             "@php artisan route:clear",
             "@php artisan view:clear",
             "@php artisan config:clear"
+        ],
+        "deploy": [
+            "composer install -o --no-dev",
+            "@php artisan route:cache",
+            "@php artisan view:cache",
         ]
     }
 }
