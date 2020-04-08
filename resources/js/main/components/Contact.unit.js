@@ -48,7 +48,7 @@ describe('Contact.vue Component', () => {
 
     form.trigger('submit.prevent')
 
-    wrapper.vm.$forceUpdate() // this part
+    wrapper.vm.$forceUpdate()
 
     wrapper.vm.$nextTick().then(() => {
       expect(wrapper.html()).toContain('field is required')
@@ -71,7 +71,7 @@ describe('Contact.vue Component', () => {
       expect(wrapper.vm.submitStatus).toBe('PENDING')
       expect(wrapper.vm.attemptSubmit).toBe(true)
       expect(axios.post).toBeCalledWith('/api/contacts', formData)
-    }) // this part
+    })
   })
 
   test('a successful request in makeRequest()', async () => {
