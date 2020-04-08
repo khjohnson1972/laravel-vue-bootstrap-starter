@@ -20,7 +20,7 @@ This is a starter setup for those looking to get started on a new project.
 * EsLint
 * Vue-test-utils and Jest
 * Vue and Vuelidate
-* Sample Vue `<contact></contact>` Component with Tests
+* Sample Vue `<contact></contact>` Component with Tests and Code Coverage
 * Laravel-mix
 * Phpcs and PSR2 Standard
 * Phpunit with Code Coverage
@@ -34,11 +34,13 @@ This is a starter setup for those looking to get started on a new project.
 
 ## Commands
 
-### PHP
+### PHP/Composer Scripts
 * `composer cs` (php code sniffer using PSR2)
 * `composer cs-fix` (php code beautifier using PSR2)
 * `phpunit` (to run the unit tests)
 * `composer lint` (run php linter on all php files)
+* `composer clear-all` (clear caches for config, cache, route and views)
+* `composer deploy` (composer install, Laravel artisan migrate and Laravel cache config, routes and views)
 
 ### NPM
 * `npm run dev` (Laravel mix to build assets)
