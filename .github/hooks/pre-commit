@@ -4,7 +4,7 @@
 
 ERRORS=0
 
-makeTitle "Git"
+makeTitle "GIT"
 echo -e "Committing as $(git config user.name)"
 echo -e "$(git status)"
 echo -e "$(git add .)"
