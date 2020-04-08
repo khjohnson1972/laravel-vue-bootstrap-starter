@@ -5,7 +5,7 @@ function phpcs () {
     local hasErrors=0
 
     makeTitle 'PHPCS'
-    p=$(php ./vendor/bin/phpcs -p --standard=PSR2 ./app ./tests ./config ./tests)
+    p=$(php ./vendor/bin/phpcs -q --standard=PSR2 ./app ./tests ./config ./tests)
 
     if [[ "$p" != "" ]]; then
         echo -e "\n$i - $p"

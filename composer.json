@@ -73,7 +73,7 @@
             "php vendor/bin/phpunit"
         ],
         "cs": [
-            "./vendor/bin/phpcs --standard=PSR2 --extensions=php ./app ./tests ./config ./tests"
+            "./vendor/bin/phpcs -p --standard=PSR2 --extensions=php ./app ./tests ./config ./tests"
         ],
         "cs-fix": [
             "./vendor/bin/phpcbf --standard=PSR2 --extensions=php ./app ./tests ./config ./tests"
