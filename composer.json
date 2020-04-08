@@ -66,8 +66,11 @@
         "test": [
             "php vendor/bin/phpunit"
         ],
-        "fix-cs": [
-            "./vendor/bin/phpcbf --standard=PSR2 --extensions=php ./app ./public ./tests ./config ./database ./tests"
+        "cs": [
+            "./vendor/bin/phpcs --standard=PSR2 --extensions=php ./app ./tests ./config ./tests"
+        ],
+        "cs-fix": [
+            "./vendor/bin/phpcbf --standard=PSR2 --extensions=php ./app ./tests ./config ./tests"
         ]
     }
 }
