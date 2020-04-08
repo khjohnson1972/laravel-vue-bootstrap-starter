@@ -2,47 +2,17 @@
 
 # include the functions and colors
 . $(dirname "$0")/functions/bash-functions
+. $(dirname "$0")/functions/output-factory
 
 # git add
 . $(dirname "$0")/functions/git-add
 gitAdd
 hasChanges=$?
-# exit if no changes for commit
-if [[ "$hasChanges" == "0" ]]; then
+
+# exit if the files have changed since the commit
+if [[ "$hasChanges" != "0" ]]; then
     exit 1
 fi
 
-# the array to hold the results
-resultArray=()
-
-# eslint
-. $(dirname "$0")/functions/eslint
-eslint
-resultArray+=$?
-
-# php lint
-. $(dirname "$0")/functions/php-lint
-phplint
-resultArray+=$?
-
-# phpcs
-. $(dirname "$0")/functions/php-cs
-phpcs
-resultArray+=$?
-
-# calculate the number of errors from the array
-numErrors=0
-for t in ${resultArray[@]}; do
-    numErrors=$((numErrors + t))
-done
-
-makeTitle "RESULTS"
-
-# if the sum of the results doesn't = 0 then something went wrong
-if [[ "$numErrors" != "0" ]]; then
-    makeError "Errors were found and the commit was rejected."
-    exit 1 #reject
-else
-    makeSuccess "SUCCESS!"
-    exit 0 #accept
-fi
+# run the factory that generates the output
+factory
