@@ -10,7 +10,7 @@ function gitAdd() {
     echo -e "$gitStatus"
 
     if [[ "$gitStatus" != *"nothing to commit"* && "$gitStatus" != *"no changes added to commit"* ]]; then
-        #echo -e "$(git add .)"
+        echo -e "$(git add .)"
         hasChanges=1
         return $hasChanges
     fi
