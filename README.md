@@ -34,13 +34,13 @@ This is a starter setup for those looking to get started on a new project.
 
 ## Commands
 
-### PHP
+### PHP/Composer Scripts
 * `composer cs` (php code sniffer using PSR2)
 * `composer cs-fix` (php code beautifier using PSR2)
 * `phpunit` (to run the unit tests)
 * `composer lint` (run php linter on all php files)
 * `composer clear-all` (clear caches for config, cache, route and views)
-* `composer deploy` (cache config, routes and views)
+* `composer deploy` (composer install and Laravel cache config, routes and views)
 
 ### NPM
 * `npm run dev` (Laravel mix to build assets)
