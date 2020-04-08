@@ -6,8 +6,9 @@
 
 for i in $(git diff --name-only --diff-filter=ACM | grep -E '(.php)$')
     do
-        p=$(git add $i --verbose)
-        echo $p
+        echo "$i"
+        p="$(git add $i --verbose)"
+        echo -e "$p"
     done
 
 # git add
