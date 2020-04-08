@@ -2,24 +2,46 @@
 
 ERRORS=0
 
+# check if stdout is a terminal...
+if test -t 1; then
+
+    # see if it supports colors...
+    ncolors=$(tput colors)
+
+    if test -n "$ncolors" && test $ncolors -ge 8; then
+        bold="$(tput bold)"
+        underline="$(tput smul)"
+        standout="$(tput smso)"
+        normal="$(tput sgr0)"
+        black="$(tput setaf 0)"
+        red="$(tput setaf 1)"
+        green="$(tput setaf 2)"
+        yellow="$(tput setaf 3)"
+        blue="$(tput setaf 4)"
+        magenta="$(tput setaf 5)"
+        cyan="$(tput setaf 6)"
+        white="$(tput setaf 7)"
+    fi
+fi
+
 function makeTitle()
 {
-    echo -e "\n\n\e[7m ------------------------ $1  ------------------------ \e[27m\n"
+    echo -e "\n\n${standout} ------------------------ $1  ------------------------ ${normal}\n"
 }
 
 function makeHint()
 {
-    echo -e "\n\e[1;48;5;137m > HINT: $1 \e[0m\n"
+    echo -e "\n${magenta} > HINT: $1 ${normal}\n"
 }
 
 function makeError()
 {
-    echo -e "\e[1;48;5;1m ---- $1 ---- \e[0m \r\n"
+    echo -e "${red} ---- $1 ---- ${normal} \r\n"
 }
 
 function makeSuccess()
 {
-    echo -e "\e[1;48;5;34m ------------------------ $1 ------------------------ \e[0m \r\n"
+    echo -e "${green} ------------------------ $1 ------------------------ ${normal} \r\n"
 }
 
 makeTitle "Git"
@@ -100,6 +122,6 @@ if [[ "$ERRORS" != "0" ]]; then
   makeError "Errors were found and the commit was rejected."
   exit 1 #reject
 else
-  makeSuccess "Success!"
+  makeSuccess "SUCCESS!"
   exit 0 #accept
 fi
