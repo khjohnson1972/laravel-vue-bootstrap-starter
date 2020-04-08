@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# for linting js files
+function eslint () {
+  makeTitle 'ESLINT'
+
+  OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.vue|.js)$')
+
+  OUTPUT=${OUTPUT//.eslintrc.js/}
+  a=("${OUTPUT}")
+
+  if [[ $a == "" ]]; then
+    return
+  fi
+
+  e=$(npx eslint -c .eslintrc.js $a)
+
+  if [[ "$e" != "" ]]; then
+    echo -e "$e"
+    makeHint "Check eslint errors. Run \`npm run lint-fix\` to fix the files."
+    ERRORS=1
+  fi
+}

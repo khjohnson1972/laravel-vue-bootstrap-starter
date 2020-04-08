@@ -24,12 +24,13 @@ fi
 
 function makeTitle()
 {
-    echo -e "\n\n${standout} ------------------------ $1  ------------------------ ${normal}\n"
+    printf '\n%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+    echo -e "${standout} $1 ${normal}\n"
 }
 
 function makeHint()
 {
-    echo -e "\n${magenta} > HINT: $1 ${normal}\n"
+    echo -e "\n${magenta} > HINT: $1 ${normal}"
 }
 
 function makeError()
@@ -39,5 +40,6 @@ function makeError()
 
 function makeSuccess()
 {
-    echo -e "${green} ------------------------ $1 ------------------------ ${normal} \r\n"
+    printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+    echo -e "${standout}${green} $1 ${normal} \r\n"
 }

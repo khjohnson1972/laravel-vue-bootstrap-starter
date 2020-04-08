@@ -2,82 +2,19 @@
 
 # include the functions and colors
 . $(dirname "$0")/functions/bash-functions
+. $(dirname "$0")/functions/eslint
+. $(dirname "$0")/functions/git-add
+. $(dirname "$0")/functions/php-lint
+. $(dirname "$0")/functions/php-cs
 
 ERRORS=0
 
-makeTitle "GIT"
-echo -e "Committing as $(git config user.name)"
-echo -e "$(git status)"
-echo -e "$(git add .)"
-
-# for linting js files
-function eslint () {
-  makeTitle 'ESLINT'
-
-  OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.vue|.js)$')
-
-  OUTPUT=${OUTPUT//.eslintrc.js/}
-  a=("${OUTPUT}")
-
-  if [[ $a == "" ]]; then
-    return
-  fi
-
-  e=$(npx eslint -c .eslintrc.js $a)
-
-  if [[ "$e" != "" ]]; then
-    echo -e "$e"
-    makeHint "Check eslint errors. Run \`npm run lint-fix\` to fix the files."
-    ERRORS=1
-  fi
-}
+gitAdd
 eslint
-
-# for linting php files
-function phplint () {
-  makeTitle 'PHP LINT'
-  echo -e "$(php -v)"
-  echo -e "\r"
-
-  OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
-
-  if [[ "$OUTPUT" = "" ]]; then
-    return
-  fi
-
-  for i in $(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
-    do
-    p=$(php -l $i)
-
-    if [[ "$p" != *"No syntax errors detected"* ]]; then
-      echo -e "\n"$i - $p
-    fi
-
-    if [[ "$p" != *"No syntax errors detected"* && ERRORS != 1 ]]; then
-      ERRORS="1"
-    fi
-  done
-}
 phplint
-
-# for phpcs files
-function phpcs () {
-  makeTitle 'PHPCS'
-  p=$(php ./vendor/bin/phpcs -qp --standard=PSR2 ./app ./tests ./config ./tests)
-
-    if [[ "$p" != "" ]]; then
-      echo -e "\n$i - $p"
-      makeHint "Check PHPCS errors. Run \`composer cs-fix\` to fix the files."
-    fi
-
-    if [[ "$p" != "" && ERRORS != 1 ]]; then
-      ERRORS="1"
-    fi
-    return
-}
 phpcs
 
-echo -e "\r"
+makeTitle RESULTS
 
 if [[ "$ERRORS" != "0" ]]; then
   makeError "Errors were found and the commit was rejected."

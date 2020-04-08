@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# for phpcs files
+function phpcs () {
+  makeTitle 'PHPCS'
+  p=$(php ./vendor/bin/phpcs -qp --standard=PSR2 ./app ./tests ./config ./tests)
+
+    if [[ "$p" != "" ]]; then
+      echo -e "\n$i - $p"
+      makeHint "Check PHPCS errors. Run \`composer cs-fix\` to fix the files."
+    fi
+
+    if [[ "$p" != "" && ERRORS != 1 ]]; then
+      ERRORS="1"
+    fi
+    return
+}
