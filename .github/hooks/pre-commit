@@ -24,6 +24,7 @@ num=$((eslintResult + phplintResult + phpcsResult))
 
 makeTitle RESULTS
 
+# if the sum of the results doesn't = 0 then something went wrong
 if [[ "$num" != "0" ]]; then
   makeError "Errors were found and the commit was rejected."
   exit 1 #reject
