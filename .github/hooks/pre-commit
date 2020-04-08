@@ -1,3 +1,5 @@
+#!/bin/bash
+
 . $(dirname "$0")/functions/bash-functions
 
 ERRORS=0
