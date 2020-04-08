@@ -2,6 +2,7 @@
 
 # for linting js files
 function eslint () {
+  local hasErrors=0
   makeTitle 'ESLINT'
 
   OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.vue|.js)$')
@@ -10,7 +11,7 @@ function eslint () {
   a=("${OUTPUT}")
 
   if [[ $a == "" ]]; then
-    return
+    return $hasErrors
   fi
 
   e=$(npx eslint -c .eslintrc.js $a)
@@ -18,6 +19,7 @@ function eslint () {
   if [[ "$e" != "" ]]; then
     echo -e "$e"
     makeHint "Check eslint errors. Run \`npm run lint-fix\` to fix the files."
-    ERRORS=1
+    hasErrors=1
   fi
+  return $hasErrors
 }

@@ -4,19 +4,27 @@
 . $(dirname "$0")/functions/bash-functions
 . $(dirname "$0")/functions/eslint
 . $(dirname "$0")/functions/git-add
-. $(dirname "$0")/functions/php-lint
 . $(dirname "$0")/functions/php-cs
+. $(dirname "$0")/functions/php-lint
 
 ERRORS=0
 
 gitAdd
+
 eslint
+eslintResult=$?
+
 phplint
+phplintResult=$?
+
 phpcs
+phpcsResult=$?
+
+num=$((eslintResult + phplintResult + phpcsResult))
 
 makeTitle RESULTS
 
-if [[ "$ERRORS" != "0" ]]; then
+if [[ "$num" != "0" ]]; then
   makeError "Errors were found and the commit was rejected."
   exit 1 #reject
 else
