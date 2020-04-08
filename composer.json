@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "laravel-vue-bootstrap-starter",
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -7,6 +7,12 @@
         "laravel"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Johnson",
+            "email": "khjohnson1972@gmail.com"
+        }
+    ],
     "require": {
         "php": "^7.2.5",
         "fideloper/proxy": "^4.2",
