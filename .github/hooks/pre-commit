@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# include the functions and colors
 . $(dirname "$0")/functions/bash-functions
 
 ERRORS=0
