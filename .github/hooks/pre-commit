@@ -60,7 +60,7 @@ phplint
 function phpcs () {
   echo -e "\n ------------------------ PHPCS ------------------------ \r"
 
-  p=$(php ./vendor/bin/phpcs -qp --standard=PSR2 app/*)
+  p=$(php ./vendor/bin/phpcs -qp --standard=PSR2 ./app ./tests ./config ./tests)
 
     if [[ "$p" != "" ]]; then
       echo -e "\n$i - $p"
