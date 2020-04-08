@@ -14,21 +14,27 @@ if [[ "$hasChanges" == "0" ]]; then
     exit 0
 fi
 
+resultArray=()
+
 eslint
-eslintResult=$?
+resultArray+=$?
 
 phplint
-phplintResult=$?
+resultArray+=$?
 
 phpcs
-phpcsResult=$?
+resultArray+=$?
 
-num=$((eslintResult + phplintResult + phpcsResult))
+# calculate the number of errors from the array
+numErrors=0
+for t in ${resultArray[@]}; do
+  numErrors=$((numErrors + t))
+done
 
 makeTitle "RESULTS"
 
 # if the sum of the results doesn't = 0 then something went wrong
-if [[ "$num" != "0" ]]; then
+if [[ "$numErrors" != "0" ]]; then
   makeError "Errors were found and the commit was rejected."
   exit 1 #reject
 else
