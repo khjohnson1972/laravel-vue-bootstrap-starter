@@ -20,7 +20,7 @@ This is a starter setup for those looking to get started on a new project.
 * EsLint
 * Vue-test-utils and Jest
 * Vue and Vuelidate
-* Sample Vue `<contact></contact>` Component with Tests
+* Sample Vue `<contact></contact>` Component with Tests and Code Coverage
 * Laravel-mix
 * Phpcs and PSR2 Standard
 * Phpunit with Code Coverage
