@@ -3,13 +3,14 @@
 # for phpcs files
 function phpcs () {
     local hasErrors=0
+
     makeTitle 'PHPCS'
     p=$(php ./vendor/bin/phpcs -qp --standard=PSR2 ./app ./tests ./config ./tests)
 
     if [[ "$p" != "" ]]; then
-      echo -e "\n$i - $p"
-      makeHint "Check PHPCS errors. Run \`composer cs-fix\` to fix the files."
-      hasErrors=1
+        echo -e "\n$i - $p"
+        makeHint "Check PHPCS errors. Run \`composer cs-fix\` to fix the files."
+        hasErrors=1
     fi
 
     return $hasErrors

@@ -3,6 +3,7 @@
 # check if there are changes in git status.
 function gitAdd() {
     local hasChanges=0
+
     makeTitle "GIT"
     echo -e "Committing as $(git config user.name)"
     gitStatus="$(git status)"

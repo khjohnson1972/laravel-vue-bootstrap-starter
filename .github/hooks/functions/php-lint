@@ -2,28 +2,30 @@
 
 # for linting php files
 function phplint () {
-  local hasErrors=0
-  makeTitle 'PHP LINT'
-  echo -e "$(php -v)"
-  echo -e "\r"
+    local hasErrors=0
 
-  OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
+    makeTitle 'PHP LINT'
+    echo -e "$(php -v)"
+    echo -e "\r"
 
-  if [[ "$OUTPUT" = "" ]]; then
-    return $hasErrors
-  fi
+    OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
 
-  for i in $(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
+    if [[ "$OUTPUT" = "" ]]; then
+        return $hasErrors
+    fi
+
+    for i in $(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
     do
-    p=$(php -l $i)
+        p=$(php -l $i)
 
-    if [[ "$p" != *"No syntax errors detected"* ]]; then
-      echo -e "\n"$i - $p
-    fi
+        if [[ "$p" != *"No syntax errors detected"* ]]; then
+            echo -e "\n"$i - $p
+        fi
 
-    if [[ "$p" != *"No syntax errors detected"* && error != 1 ]]; then
-      hasErrors=1
-    fi
-  done
-  return $hasErrors
+        if [[ "$p" != *"No syntax errors detected"* && error != 1 ]]; then
+            hasErrors=1
+        fi
+    done
+
+    return $hasErrors
 }
