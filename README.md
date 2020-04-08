@@ -40,7 +40,7 @@ This is a starter setup for those looking to get started on a new project.
 * `phpunit` (to run the unit tests)
 * `composer lint` (run php linter on all php files)
 * `composer clear-all` (clear caches for config, cache, route and views)
-* `composer deploy` (composer install and Laravel cache config, routes and views)
+* `composer deploy` (composer install, Laravel artisan migrate and Laravel cache config, routes and views)
 
 ### NPM
 * `npm run dev` (Laravel mix to build assets)
