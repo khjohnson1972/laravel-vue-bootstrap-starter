@@ -8,6 +8,11 @@
 . $(dirname "$0")/functions/php-lint
 
 gitAdd
+hasChanges=$?
+# exit if no changes for commit
+if [[ "$hasChanges" == "0" ]]; then
+    exit 0
+fi
 
 eslint
 eslintResult=$?
