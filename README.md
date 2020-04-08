@@ -11,6 +11,7 @@ This is a starter setup for those looking to get started on a new project.
 * php artisan key:generate
 * php artisan migrate
 * php artisan db:seed
+* php artisan serve
 
 ## Features
 
