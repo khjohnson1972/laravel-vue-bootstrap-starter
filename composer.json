@@ -65,6 +65,9 @@
         ],
         "test": [
             "php vendor/bin/phpunit"
+        ],
+        "fix-cs": [
+            "./vendor/bin/phpcbf --standard=PSR2 ./**/*.php ./*.php"
         ]
     }
 }
