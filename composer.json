@@ -67,7 +67,7 @@
             "php vendor/bin/phpunit"
         ],
         "fix-cs": [
-            "./vendor/bin/phpcbf --standard=PSR2 ./**/*.php ./*.php"
+            "./vendor/bin/phpcbf --standard=PSR2 --extensions=php ./app ./public ./tests ./config ./database ./tests"
         ]
     }
 }
