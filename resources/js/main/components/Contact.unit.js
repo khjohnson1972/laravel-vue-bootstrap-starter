@@ -7,6 +7,14 @@ jest.mock('axios') // axios here is the mock from above!
 describe('Contact.vue Component', () => {
   let wrapper = null
 
+  const formData = {
+    name: 'John Doe',
+    email: 'test@test.com',
+    phone: '555-555-5555',
+    company: 'test',
+    message: 'message message'
+  }
+
   // creates a new wrapper after each test
   beforeEach(() => {
     wrapper = mount(Contact, {
@@ -29,12 +37,7 @@ describe('Contact.vue Component', () => {
 
   test('clearForm() reset data', () => {
     wrapper.setData({
-      formData: {
-        name: 'test',
-        email: 'test',
-        company: 'test',
-        message: 'message'
-      }
+      formData
     })
     wrapper.vm.clearForm()
     expect(wrapper.vm.formData.email).toBe('')
@@ -57,12 +60,7 @@ describe('Contact.vue Component', () => {
   test('the output after successful sumbit', async () => {
     axios.post.mockResolvedValue(Promise.resolve({ data: 'some data' }))
     wrapper.setData({
-      formData: {
-        name: 'John Doe',
-        email: 'test@test.com',
-        company: 'test',
-        message: 'message'
-      }
+      formData
     })
 
     const form = wrapper.find('form')
@@ -72,7 +70,7 @@ describe('Contact.vue Component', () => {
     wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.submitStatus).toBe('PENDING')
       expect(wrapper.vm.attemptSubmit).toBe(true)
-      expect(axios.post).toBeCalledWith('/api/contacts', { email: 'test@test.com', name: 'John Doe', message: 'message', company: 'test' })
+      expect(axios.post).toBeCalledWith('/api/contacts', formData)
     }) // this part
   })
 
@@ -84,6 +82,10 @@ describe('Contact.vue Component', () => {
       expect(wrapper.vm.submitStatus).toBe('OK')
       expect(wrapper.vm.formData.name).toBe('')
       expect(wrapper.vm.formData.email).toBe('')
+      expect(wrapper.vm.formData.phone).toBe('')
+      expect(wrapper.vm.formData.company).toBe('')
+      expect(wrapper.vm.formData.message).toBe('')
+
       expect(wrapper.html()).toContain('Thanks for your submission!')
     })
   })
@@ -92,17 +94,12 @@ describe('Contact.vue Component', () => {
     axios.post.mockReturnValue(Promise.reject(new Error('This is an error in the request')))
 
     wrapper.setData({
-      formData: {
-        name: 'John Doe',
-        email: 'test@test.com',
-        company: 'test',
-        message: 'message'
-      }
+      formData
     })
     // return a promise because of the async call
     return wrapper.vm.makeRequest().then(() => {
       expect(wrapper.vm.submitStatus).toBe('FAILED')
-      expect(axios.post).toBeCalledWith('/api/contacts', { email: 'test@test.com', name: 'John Doe', message: 'message', company: 'test' })
+      expect(axios.post).toBeCalledWith('/api/contacts', formData)
       expect(wrapper.vm.formData.name).toBe('John Doe')
       expect(wrapper.vm.formData.email).toBe('test@test.com')
     })

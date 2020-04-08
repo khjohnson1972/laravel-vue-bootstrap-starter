@@ -18,27 +18,12 @@ class ContactTest extends TestCase
      */
     public function testStoreSaved()
     {
-        $payload = [
-            'email' => 'testlogin@user.com',
-            'name' => 'Blah',
-            'company' => 'company',
-            'phone' => '9999999999',
-            'message' => 'message'
-        ];
-        $response = $this->json('POST', route('api.contacts.store'), $payload);
+        $contact = factory('App\Contact')->make()->toArray();
+        $response = $this->json('POST', route('api.contacts.store'), $contact);
 
-        $this->assertDatabaseHas('contacts', $payload);
+        $this->assertDatabaseHas('contacts', $contact);
 
         $response->assertStatus(200)
-        ->assertJsonStructure([
-            'name',
-            'company',
-            'email',
-            'phone',
-            'message',
-            'updated_at',
-            'created_at',
-            'id',
-        ]);
+        ->assertJsonStructure(array_keys($contact));
     }
 }
