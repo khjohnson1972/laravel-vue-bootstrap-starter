@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# check if there are changes
 function gitAdd() {
     local hasChanges=0
     makeTitle "GIT"
