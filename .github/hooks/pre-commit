@@ -2,11 +2,9 @@
 
 # include the functions and colors
 . $(dirname "$0")/functions/bash-functions
-. $(dirname "$0")/functions/git-add
-. $(dirname "$0")/functions/eslint
-. $(dirname "$0")/functions/php-cs
-. $(dirname "$0")/functions/php-lint
 
+# git add
+. $(dirname "$0")/functions/git-add
 gitAdd
 hasChanges=$?
 # exit if no changes for commit
@@ -14,14 +12,21 @@ if [[ "$hasChanges" == "0" ]]; then
     exit 0
 fi
 
+# the array to hold the results
 resultArray=()
 
+# eslint
+. $(dirname "$0")/functions/eslint
 eslint
 resultArray+=$?
 
+# php lint
+. $(dirname "$0")/functions/php-lint
 phplint
 resultArray+=$?
 
+# phpcs
+. $(dirname "$0")/functions/php-cs
 phpcs
 resultArray+=$?
 
