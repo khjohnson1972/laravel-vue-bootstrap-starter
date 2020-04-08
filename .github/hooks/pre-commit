@@ -2,13 +2,34 @@
 
 ERRORS=0
 
+function makeTitle()
+{
+    echo -e "\n\n\e[7m ------------------------ $1  ------------------------ \e[27m\n"
+}
+
+function makeHint()
+{
+    echo -e "\n\e[1;48;5;137m > HINT: $1 \e[0m\n"
+}
+
+function makeError()
+{
+    echo -e "\e[1;48;5;1m ---- $1 ---- \e[0m \r\n"
+}
+
+function makeSuccess()
+{
+    echo -e "\e[1;48;5;34m ------------------------ $1 ------------------------ \e[0m \r\n"
+}
+
+makeTitle "Git"
 echo -e "Committing as $(git config user.name)"
 echo -e "$(git status)"
 echo -e "$(git add .)"
 
 # for linting js files
-function lintit () {
-  echo -e "\n ------------------------ ESLINT ------------------------\n"
+function eslint () {
+  makeTitle 'ESLINT'
 
   OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.vue|.js)$')
 
@@ -23,16 +44,16 @@ function lintit () {
 
   if [[ "$e" != "" ]]; then
     echo -e "$e"
-    echo -e "\nERROR: Check eslint hints."
+    makeHint "Check eslint errors. Run \`npm run lint-fix\` to fix the files."
     ERRORS=1
   fi
 }
-lintit
+eslint
 
 # for linting php files
 function phplint () {
-  echo -e "\n ------------------------ PHP LINT ------------------------ \r\n"
-  echo $(php -v)
+  makeTitle 'PHP LINT'
+  echo -e "$(php -v)"
   echo -e "\r"
 
   OUTPUT=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(.php)$')
@@ -58,12 +79,12 @@ phplint
 
 # for phpcs files
 function phpcs () {
-  echo -e "\n ------------------------ PHPCS ------------------------ \r"
-
+  makeTitle 'PHPCS'
   p=$(php ./vendor/bin/phpcs -qp --standard=PSR2 ./app ./tests ./config ./tests)
 
     if [[ "$p" != "" ]]; then
       echo -e "\n$i - $p"
+      makeHint "Check PHPCS errors. Run \`composer cs-fix\` to fix the files."
     fi
 
     if [[ "$p" != "" && ERRORS != 1 ]]; then
@@ -76,8 +97,9 @@ phpcs
 echo -e "\r"
 
 if [[ "$ERRORS" != "0" ]]; then
-  echo -e "---- Errors were found and the commit was rejected. ---- \r\n"
+  makeError "Errors were found and the commit was rejected."
   exit 1 #reject
 else
+  makeSuccess "Success!"
   exit 0 #accept
 fi
