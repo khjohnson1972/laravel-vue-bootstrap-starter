@@ -6,11 +6,13 @@ This is a starter setup for those looking to get started on a new project.
 
 * git clone the repository
 * `composer install -o`
-* `npm ci`
+* `npm install` in development or `npm ci` in production
+* `npm run dev`
 * setup your .env file with database credentials
-* php artisan key:generate
-* php artisan migrate
-* php artisan db:seed
+* `php artisan key:generate`
+* `php artisan migrate`
+* `php artisan db:seed`
+* `php artisan serve` (visit the app at http://127.0.0.1:8000)
 
 ## Features
 
