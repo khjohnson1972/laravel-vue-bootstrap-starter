@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Contact;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ContactController extends Controller
@@ -16,7 +17,7 @@ class ContactController extends Controller
      */
     public function index(): View
     {
-        $contacts = Contact::all()->sortByDesc('created_at');
+        $contacts = DB::table('contacts')->orderBy('id', 'desc')->paginate(15);
         return view('admin.contacts.index', compact('contacts'));
     }
 
