@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        {{ $contacts->links() }}
         <table class="table">
             <thead>
                 <th scope="col">Name</th>
@@ -29,7 +30,7 @@
                 @endforelse
             </tbody>
         </table>
+        {{ $contacts->links() }}
     </div>
 </div>
-{{ $contacts->links() }}
 @endsection
