@@ -10,6 +10,14 @@ use App\Http\Controllers\Controller;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:contacts.viewAny', ['only' => ['index']]);
+        $this->middleware('can:contacts.view,contact', ['only' => ['show']]);
+        $this->middleware('can:contacts.create', ['only' => ['create', 'store']]);
+        $this->middleware('can:contacts.update,contact', ['only' => ['edit', 'update']]);
+        $this->middleware('can:contacts.delete,contact', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +56,7 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contact $contact)
     {
         //
     }
@@ -71,7 +79,7 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
         //
     }
@@ -82,7 +90,7 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
         //
     }
