@@ -1,18 +1,6 @@
 ## Laravel 7, Vue.js 2, Bootstrap 4, MySQL 8 Starter
 
-This is a starter setup for those looking to get started on a new project.
-
-## Installation
-
-* git clone the repository
-* `composer install -o`
-* `npm install` in development or `npm ci` in production
-* `npm run dev`
-* setup your .env file with database credentials
-* `php artisan key:generate`
-* `php artisan migrate`
-* `php artisan db:seed`
-* `php artisan serve` (visit the app at http://127.0.0.1:8000)
+This is a starter template setup for those looking to get started on a new project.
 
 ## Features
 
@@ -26,6 +14,18 @@ This is a starter setup for those looking to get started on a new project.
 * Phpunit with Code Coverage
 * Git hook for pre-commit
 * Github Actions for Testing Code on Push to Master Branch and Pull-Requests
+
+## Installation
+
+* git clone the repository
+* `composer install -o`
+* `npm install` in development or `npm ci` in production
+* `npm run dev`
+* setup your .env file with database credentials
+* `php artisan key:generate`
+* `php artisan migrate`
+* `php artisan db:seed`
+* `php artisan serve` (visit the app at http://127.0.0.1:8000)
 
 ## Setup
 
