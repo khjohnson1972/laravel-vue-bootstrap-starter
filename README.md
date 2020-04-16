@@ -57,4 +57,6 @@ There is a pre-commit hook in ./.github/hooks/. This is moved to the ./git/hooks
 
 ### TESTING
 
-* composer 
+* `composer test` to run the PhpUnit tests. Code coverage is output to build/coverage.
+* `npm run tests:unit` to run the Vue\Jest tests. Code coverage is output to build/jest/coverage.
+
