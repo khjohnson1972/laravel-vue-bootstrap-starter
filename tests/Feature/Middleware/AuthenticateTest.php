@@ -2,12 +2,7 @@
 
 namespace Tests\Feature\Middleware;
 
-use App\User;
-use Illuminate\Http\Request;
-use App\Http\Middleware\Authenticate;
 use Tests\TestCase;
-use Illuminate\Contracts\Auth\Factory as Auth;
-use Symfony\Component\HttpFoundation\HeaderBag;
 
 class AuthenticateTest extends TestCase
 {

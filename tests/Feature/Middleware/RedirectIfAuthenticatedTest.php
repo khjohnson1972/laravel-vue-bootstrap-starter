@@ -6,9 +6,13 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class RedirectIfAuthenticatedTest extends TestCase
 {
+    use RefreshDatabase, DatabaseMigrations;
+
     public function testNonAdminsAreNotRedirected()
     {
         $request = Request::create('/admin/dashboard', 'GET');
