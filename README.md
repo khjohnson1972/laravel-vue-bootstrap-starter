@@ -37,7 +37,7 @@ This is a starter template setup for those looking to get started on a new proje
 ### PHP/Composer Scripts
 * `composer cs` (php code sniffer using PSR2)
 * `composer cs-fix` (php code beautifier using PSR2)
-* `phpunit` (to run the unit tests)
+* `composer test` (to run the PhpUnit tests)
 * `composer lint` (run php linter on all php files)
 * `composer clear-all` (clear caches for config, cache, route and views)
 * `composer deploy` (composer install, Laravel artisan migrate and Laravel cache config, routes and views)
@@ -54,3 +54,7 @@ This is a starter template setup for those looking to get started on a new proje
 ### Github Hook
 
 There is a pre-commit hook in ./.github/hooks/. This is moved to the ./git/hooks/ directory when `composer install` or `composer dump-autoload` is run.
+
+### TESTING
+
+* composer 
