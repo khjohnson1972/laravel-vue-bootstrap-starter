@@ -22,7 +22,6 @@
 </head>
 <body>
     <div id="app" v-cloak class="container">
-        <alert :alert="alert"></alert>
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -82,6 +81,7 @@
         </nav>
 
         <main class="py-4">
+            <alert :alert="alert"></alert>
             @yield('content')
         </main>
     </div>

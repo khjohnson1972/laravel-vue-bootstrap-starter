@@ -87,7 +87,7 @@ class ContactController extends Controller
         $contact->save();
 
         // alert
-        $this->alert($request, 'Success', 'You have successfully updated the dealer <b>' . $contact->name . '</b>.');
+        $this->alert($request, 'Success', 'You have successfully updated the contact: ' . $contact->name . '.');
 
         //send back
         return back();
