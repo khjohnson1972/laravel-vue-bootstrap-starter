@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contact;
 use Illuminate\View\View;
+use App\Http\Requests\UpdateContact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -64,12 +65,12 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\EditContact  $request
+     * @param  \App\Contact                   $contact
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit(Contact $contact)
     {
-        $contact = Contact::where('id', $contact->id)->first();
         return view('admin.contacts.edit', compact('contact'));
     }
 
@@ -80,10 +81,12 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(UpdateContact $request, Contact $contact)
     {
-        $contact = Contact::where('id', $contact->id)->first();
-        //message
+        $contact->name = $request->input('name');
+        $contact->save();
+
+        // alert
         $this->alert($request, 'Success', 'You have successfully updated the dealer <b>' . $contact->name . '</b>.');
 
         //send back
