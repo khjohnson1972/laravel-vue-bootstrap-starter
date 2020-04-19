@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col text-right mb-2">
+            <a href="{{ route('admin.contact.index') }}">&lt;&nbsp;Back</a><br/>
+        </div>
+    </div>
     <div class="row justify-content-center">
+
         <div class="col">
             <form id="edit-contact"method="post" action="{{ route('admin.contact.update', $contact->id) }}">
                 <!--hidden-->
