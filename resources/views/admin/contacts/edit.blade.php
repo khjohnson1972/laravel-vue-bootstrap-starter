@@ -8,7 +8,7 @@
             <!--hidden-->
             <input name="_token" type="hidden" value="{{ csrf_token() }}" />
             <input name="_method" type="hidden" value="put" />
-            <input type="text" name="name" value="{{ $contact->name }}"/>
+            <input type="text" name="name" value="{{ old('name', $contact->name) }}"/>
             <input type="submit"/>
         </form>
     </div>
