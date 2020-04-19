@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -11,6 +11,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Date</th>
+                <th scope="col">Actions</th>
             </thead>
             <tbody>
                 @forelse ($contacts as $contact)
@@ -20,6 +21,8 @@
                     <td><a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a></td>
                     <td>{{ $contact->phone }}</td>
                     <td>{{ $contact->created_at }}</td>
+                    <td><a href="{{ route('admin.contact.edit', $contact->id) }}">Edit</a></td>
+
                 </tr>
                 @empty
                 <tr>

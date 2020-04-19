@@ -67,9 +67,10 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact $contact)
     {
-        //
+        $contact = Contact::where('id', $contact->id)->first();
+        return view('admin.contacts.edit', compact('contact'));
     }
 
     /**
@@ -81,7 +82,12 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $contact = Contact::where('id', $contact->id)->first();
+        //message
+        $this->alert($request, 'Success', 'You have successfully updated the dealer <b>' . $contact->name . '</b>.');
+
+        //send back
+        return back();
     }
 
     /**
