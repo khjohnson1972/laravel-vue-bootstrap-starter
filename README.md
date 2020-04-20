@@ -44,7 +44,8 @@ This is a starter template setup for those looking to get started on a new proje
 
 ### NPM
 * `npm run dev` (Laravel mix to build assets)
-* `npm run watch-poll` (Laravel mix to watch build assets)
+* `npm run watch` (Laravel mix to watch build assets. Use `npm run watch-poll` instead.)
+* `npm run watch-poll` (Laravel mix to watch-poll build assets)
 * `npm run production` (Laravel to run production build)
 * `npm run test:unit` (Run the unit tests and view the coverage in ./build/jest/coverage/)
 * `npm run test:unit-update-snapshots` (Run the unit tests and update the snapshots)
