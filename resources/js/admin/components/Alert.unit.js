@@ -6,6 +6,7 @@ describe('Alert.vue Component', () => {
   // creates a new wrapper after each test
   beforeEach(() => {
     wrapper = shallowMount(Alert, {
+      ...createComponentMocks(),
       propsData: {
         alert: {
           message: 'test'
