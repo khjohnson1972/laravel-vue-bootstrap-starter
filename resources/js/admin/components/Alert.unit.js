@@ -23,11 +23,11 @@ describe('Alert.vue Component', () => {
     expect(Alert).toBeAComponent()
   })
 
-  test('test shown returns message', () => {
+  test('test shown() returns message', () => {
     expect(wrapper.vm.shown).toBe('test')
   })
 
-  test('test shown returns title', () => {
+  test('test shown() returns title', () => {
     wrapper.setProps({
       alert: {
         title: 'title'
@@ -36,7 +36,7 @@ describe('Alert.vue Component', () => {
     expect(wrapper.vm.shown).toBe('title')
   })
 
-  test('test status returns class name', () => {
+  test('test status() returns class name', () => {
     wrapper.setProps({
       alert: {
         context: 'success'
