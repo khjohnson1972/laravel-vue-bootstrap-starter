@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col text-right mb-2">
-            <a href="{{ route('admin.contact.index') }}">&lt;&nbsp;Back</a><br/>
+        <div class="col text-right mb-4">
+            <a class="btn btn-primary" href="{{ route('admin.contact.index') }}">&lt;&nbsp;Back</a><br/>
         </div>
     </div>
     <div class="row justify-content-center">

@@ -21,7 +21,7 @@
                     <td><a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a></td>
                     <td>{{ $contact->phone }}</td>
                     <td>{{ $contact->created_at }}</td>
-                    <td><a href="{{ route('admin.contact.edit', $contact->id) }}">Edit</a></td>
+                    <td><a class="btn btn-primary" href="{{ route('admin.contact.edit', $contact->id) }}">Edit</a></td>
 
                 </tr>
                 @empty
