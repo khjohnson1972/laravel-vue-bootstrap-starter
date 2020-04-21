@@ -9,7 +9,7 @@ class ShareFeedbackTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_shares_feedback_with_no_feedback()
+    public function testSharesFeedbackWithNoFeedback()
     {
         $this->get('/')
              ->assertViewHas('_state', [
@@ -18,7 +18,7 @@ class ShareFeedbackTest extends TestCase
              ]);
     }
 
-    public function test_shares_feedback_with_modal()
+    public function testSharesFeedbackWithModal()
     {
         $this->withSession(['modal' => 'foo'])
              ->get('/')
@@ -28,7 +28,7 @@ class ShareFeedbackTest extends TestCase
              ]);
     }
 
-    public function test_shares_feedback_with_alert()
+    public function testSharesFeedbackWithAlert()
     {
         $this->withSession(['alert' => 'bar'])
              ->get('/')
