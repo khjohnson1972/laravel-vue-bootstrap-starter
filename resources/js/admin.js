@@ -32,27 +32,7 @@ const app = new Vue({
   el: '#app',
 
   data: {
-    state: window.state,
-    alert: {
-      title: '',
-      message: '',
-      context: ''
-    }
-  },
-
-  mounted: function () {
-    if (this.state && this.state.alert) {
-      this.toggleAlert(this.state.alert.title, this.state.alert.message, this.state.alert.context)
-    }
-  },
-
-  methods: {
-
-    toggleAlert: function (title, message, context) {
-      this.alert.title = title
-      this.alert.message = message
-      this.alert.context = context
-    }
+    state: window.state
   }
 })
 /* eslint-enable no-unused-vars */

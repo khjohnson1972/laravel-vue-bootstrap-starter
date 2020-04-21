@@ -17,8 +17,8 @@ class ShareFeedback
     {
         //share
         view()->share('_state', [
-            'modal' => $request->session()->get('modal') ?? null,
-            'alert' => $request->session()->get('alert') ?? null,
+            'modal' => $request->session()->get('modal') ?? new \stdClass,
+            'alert' => $request->session()->get('alert') ?? new \stdClass,
         ]);
 
         //next

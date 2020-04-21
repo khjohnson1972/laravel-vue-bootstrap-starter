@@ -81,7 +81,7 @@
         </nav>
 
         <main class="py-4">
-            <alert :alert="alert"></alert>
+            <alert :alert='@json($_state['alert'])'></alert>
             @yield('content')
         </main>
     </div>
