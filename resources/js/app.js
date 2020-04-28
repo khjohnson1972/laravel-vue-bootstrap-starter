@@ -11,13 +11,6 @@ window.Vue = require('vue')
 
 window.Vue.use(Vuelidate)
 
-// load jquery popper and bootstrap
-try {
-  window.Popper = require('popper.js').default
-  window.$ = window.jQuery = require('jquery')
-  require('bootstrap')
-} catch (e) {}
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
