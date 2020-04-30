@@ -89,6 +89,10 @@
             "@php artisan view:clear",
             "@php artisan config:clear"
         ],
+        "testing-mode": [
+            "composer install -o --no-autoloader",
+            "composer clear-all"
+        ],
         "deploy": [
             "composer install -o --no-dev",
             "@php artisan migrate",
