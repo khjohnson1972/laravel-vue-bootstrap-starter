@@ -15,7 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
 mix.sass('resources/sass/app.scss', 'public/css').sourceMaps(true, 'source-map')
 
 mix.js('resources/js/admin.js', 'public/js')
-mix.sass('resources/sass/admin.scss', 'public/css').sourceMaps(true, 'source-map')
+mix.sass('resources/sass/admin/app.scss', 'public/css').sourceMaps(true, 'source-map')
 
 // cache busting in production
 if (mix.inProduction()) {
