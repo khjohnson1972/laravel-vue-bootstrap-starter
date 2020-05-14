@@ -16,11 +16,10 @@
         "test:unit-ci": "cross-env NODE_ENV=test vue-cli-service test:unit --silent=true --verbose=false --collectCoverage=false --ci=true"
     },
     "devDependencies": {
-        "@vue/cli-plugin-unit-jest": "^4.2.3",
-        "@vue/cli-service": "^4.2.3",
-        "@vue/test-utils": "^1.0.0-beta.32",
+        "@vue/cli-plugin-unit-jest": "^4.3.1",
+        "@vue/cli-service": "^4.3.1",
+        "@vue/test-utils": "^1.0.2",
         "babel-core": "^6.26.3",
-        "babel-jest": "^25.2.6",
         "babel-preset-env": "^1.7.0",
         "eslint": "^6.8.0",
         "eslint-config-airbnb-base": "^14.1.0",
@@ -30,7 +29,7 @@
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^4.0.1",
         "eslint-plugin-vue": "^6.2.2",
-        "jest": "^25.2.6",
+        "jest": "^25.5.4",
         "laravel-mix": "^5.0.1",
         "vue-jest": "^3.0.5"
     },
