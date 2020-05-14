@@ -63,3 +63,24 @@ jobs:
       run: composer global require squizlabs/php_codesniffer
     - name: Run PHPCS
       run: ~/.composer/vendor/bin/phpcs app/ --standard=PSR2
+
+  build:
+    name: 'Jest Tests / Lint'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm run prod --if-present
+    - run: npm run test:unit
+    - run: npm run lint
+      env:
+        CI: true
+    - name: Archive coverage report
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-jest
+        path: build/jest/coverage
