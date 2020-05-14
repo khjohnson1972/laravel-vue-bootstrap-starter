@@ -10,7 +10,7 @@ module.exports = {
     'plugin:vue/recommended',
     'standard'
   ],
-  ignorePattern: 'webpack.config.js',
+  ignorePatterns: 'webpack.config.js',
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
