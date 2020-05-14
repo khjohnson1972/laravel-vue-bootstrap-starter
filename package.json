@@ -30,8 +30,7 @@
         "eslint-plugin-standard": "^4.0.1",
         "eslint-plugin-vue": "^6.2.2",
         "jest": "^25.5.4",
-        "laravel-mix": "^5.0.1",
-        "vue-jest": "^3.0.5"
+        "laravel-mix": "^5.0.1"
     },
     "dependencies": {
         "axios": "^0.19.2",
