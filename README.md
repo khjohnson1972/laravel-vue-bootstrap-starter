@@ -1,3 +1,5 @@
+![CI](https://github.com/khjohnson1972/laravel-vue-bootstrap-starter/workflows/CI/badge.svg)
+
 ## Laravel 7, Vue.js 2, Bootstrap 4, MySQL 8 Starter
 
 This is a starter template setup for those looking to get started on a new project.
