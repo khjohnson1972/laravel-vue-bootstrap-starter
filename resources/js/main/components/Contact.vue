@@ -18,6 +18,12 @@
                     placeholder="Enter name"
                 >
                 <div
+                    v-if="!$v.formData.name.required && attemptSubmit"
+                    class="invalid-feedback"
+                >
+                    This field is required
+                </div>
+                <div
                     v-if="!$v.formData.name.maxLength && attemptSubmit"
                     class="invalid-feedback"
                 >

@@ -2,7 +2,7 @@
 
 ## Laravel 8, Vue.js 2, Bootstrap 4, MySQL 8 Starter
 
-This is a starter template setup for those looking to get started on a new project.
+This is a starter template setup for those looking to get started on a new project. To use this template click, "Use this template" near the top of this page.
 
 ## Features
 
