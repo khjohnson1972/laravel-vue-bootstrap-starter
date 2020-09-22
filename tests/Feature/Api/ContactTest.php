@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api;
 
+use Database\Factories\ContactFactory;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,7 +19,7 @@ class ContactTest extends TestCase
      */
     public function testStoreSaved()
     {
-        $contact = factory('App\Contact')->make()->toArray();
+        $contact = (new ContactFactory)->make()->toArray();
         $response = $this->json('POST', route('api.contacts.store'), $contact);
 
         $this->assertDatabaseHas('contacts', $contact);

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Middleware;
 
-use App\User;
+use Database\Factories\UserFactory;
 use Illuminate\Http\Request;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Tests\TestCase;
@@ -27,7 +27,7 @@ class RedirectIfAuthenticatedTest extends TestCase
 
     public function testAdminsAreRedirected()
     {
-        $user = factory(User::class)->make();
+        $user = (new UserFactory)->make();
         $this->actingAs($user);
 
         $middleware = new RedirectIfAuthenticated;
