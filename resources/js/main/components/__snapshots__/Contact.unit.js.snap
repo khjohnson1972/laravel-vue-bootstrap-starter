@@ -7,6 +7,7 @@ exports[`Contact.vue Component matches snapshot 1`] = `
     <div class="form-group"><label for="name">Name</label> <input id="name" type="text" placeholder="Enter name" class="form-control">
       <!---->
       <!---->
+      <!---->
     </div>
     <div class="form-group"><label for="company">Company</label> <input id="company" type="text" placeholder="Enter company" class="form-control">
       <!---->
@@ -16,7 +17,8 @@ exports[`Contact.vue Component matches snapshot 1`] = `
     <div class="form-group"><label for="email">Email address</label> <input id="email" type="email" aria-describedby="emailHelp" placeholder="Enter email" class="form-control">
       <!---->
       <!---->
-      <!----> <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small></div>
+      <!----> <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
     <div class="form-group"><label for="phone">Phone number</label> <input id="phone" type="phone" placeholder="###-###-####" class="form-control">
       <!---->
       <!---->
