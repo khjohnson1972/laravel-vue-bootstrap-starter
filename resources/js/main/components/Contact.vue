@@ -224,34 +224,38 @@ export default {
   },
   methods: {
     async makeRequest () {
-      const vm = this
-      // send a POST request
-      return axios.post(
-        '/api/contacts',
-        {
-          name: this.formData.name,
-          email: this.formData.email,
-          phone: this.formData.phone,
-          company: this.formData.company,
-          message: this.formData.message
-        }
-      )
-        .then(function (response) {
-          // handle success
-          vm.clearForm()
-          vm.submitStatus = 'OK'
-          return response
-        })
-        .catch(function (error) {
-          // handle error
-          vm.errorMessage = 'Request failed'
-          vm.submitStatus = 'FAILED'
-          return error
-        })
-        // .then(function () {
-        // always executed
-        //  return
-        // })
+      try {
+        const vm = this
+        // send a POST request
+        return axios.post(
+          '/api/contacts',
+          {
+            name: this.formData.name,
+            email: this.formData.email,
+            phone: this.formData.phone,
+            company: this.formData.company,
+            message: this.formData.message
+          }
+        )
+          .then(function (response) {
+            // handle success
+            vm.clearForm()
+            vm.submitStatus = 'OK'
+            return response
+          })
+          .catch(function (error) {
+            // handle error
+            vm.errorMessage = 'Request failed'
+            vm.submitStatus = 'FAILED'
+            return error
+          })
+          // .then(function () {
+          // always executed
+          //  return
+          // })
+      } catch (ex) {
+        console.log(ex)
+      }
     },
     submit (e) {
       this.attemptSubmit = true
