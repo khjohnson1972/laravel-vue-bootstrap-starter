@@ -31,6 +31,7 @@ This is a starter template setup for those looking to get started on a new proje
 
 ## Setup
 
+* Replace `![CI](https://github.com/khjohnson1972/laravel-vue-bootstrap-starter/workflows/CI/badge.svg)` at top of README for CI status badge.
 * `npm install` for development or `npm ci` for production.
 * `composer update` or `composer install -o` for development. `composer install -o --no-dev` for production.
 
