@@ -55,6 +55,9 @@ This is a starter template setup for those looking to get started on a new proje
 * `npm run test:ci` (Run the unit tests in continuous integration mode)
 * `npm run test:unit-watch` (Run the unit tests and watch for changes)
 
+#### Run a single jest test
+* `npx cross-env NODE_ENV=test vue-cli-service test:unit --verbose=true resources/js/main/components/Form/Contact.unit.js`
+
 ### Github Hook
 
 There is a pre-commit hook in ./.github/hooks/. This is moved to the ./git/hooks/ directory when `composer install` or `composer dump-autoload` is run.
