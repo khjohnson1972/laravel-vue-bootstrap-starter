@@ -11,7 +11,7 @@ This is a starter template setup for those looking to get started on a new proje
 * Vue-test-utils and Jest
 * Vue and Vuelidate
 * Sample Vue `<contact></contact>` Component with Tests and Code Coverage
-* Laravel-mix
+* Laravel-mix for webpack of assets
 * Phpcs and PSR2 Standard
 * Phpunit with Code Coverage
 * Git hook for pre-commit
