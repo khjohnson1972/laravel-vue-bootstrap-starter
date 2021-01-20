@@ -5,11 +5,21 @@
  */
 
 import './bootstrap'
-import Vuelidate from 'vuelidate'
+// import Vuelidate from 'vuelidate'
+import { createApp } from 'vue'
 
-window.Vue = require('vue')
+// window.Vue.use(Vuelidate)
 
-window.Vue.use(Vuelidate)
+const files = require.context('./main/components', true, /\.vue$/i)
+files.keys().map(key => window.Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+const app = createApp({
+  data () {
+    return { count: 4 }
+  }
+})
+
+app.mount('#app')
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,8 +29,8 @@ window.Vue.use(Vuelidate)
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-const files = require.context('./main/components', true, /\.vue$/i)
-files.keys().map(key => window.Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// const files = require.context('./main/components', true, /\.vue$/i)
+// files.keys().map(key => window.Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
@@ -30,7 +40,7 @@ files.keys().map(key => window.Vue.component(key.split('/').pop().split('.')[0],
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 /* eslint-disable no-unused-vars */
-const app = new window.Vue({
-  el: '#app'
-})
+// const app = new window.Vue({
+//  el: '#app'
+// })
 /* eslint-enable no-unused-vars */
