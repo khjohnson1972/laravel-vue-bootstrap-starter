@@ -7,11 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class RedirectIfAuthenticatedTest extends TestCase
 {
-    use RefreshDatabase, DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testNonAdminsAreNotRedirected()
     {
