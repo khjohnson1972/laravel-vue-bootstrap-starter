@@ -8,7 +8,6 @@
         </div>
     </div>
     <div class="row justify-content-center">
-
         <div class="col">
             <form id="edit-contact"method="post" action="{{ route('admin.contact.update', $contact->id) }}">
                 <!--hidden-->

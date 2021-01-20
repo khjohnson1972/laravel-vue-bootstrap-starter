@@ -1,12 +1,12 @@
 <template>
     <div
         v-if="shown"
-        class="alert rounded-0 mb-0 alert-dismissible fade show"
+        class="alert rounded-0 mb-3 alert-dismissible fade show"
         role="alert"
         :class="status"
     >
         <span
-            class="font-weight-bold"
+            class="font-weight-bold mr-2"
         >{{ alert.title }}</span>
         <span>{{ alert.message }}</span>
         <button

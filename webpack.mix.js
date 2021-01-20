@@ -11,6 +11,12 @@ const mix = require('laravel-mix')
  |
  */
 
+mix.webpackConfig(webpack => {
+  return {
+    plugins: [new webpack.DefinePlugin({ __VUE_OPTIONS_API__: 'true', __VUE_PROD_DEVTOOLS__: 'false' })]
+  }
+})
+
 mix.sass('resources/sass/app.scss', 'public/css').sourceMaps(false, 'source-map')
 mix.js('resources/js/app.js', 'public/js').vue({ version: 3 })
 
@@ -18,6 +24,6 @@ mix.sass('resources/sass/admin/admin.scss', 'public/css').sourceMaps(false, 'sou
 mix.js('resources/js/admin.js', 'public/js').vue({ version: 3 })
 
 // cache busting in production
-// if (mix.inProduction()) {
-//  mix.version();
-// }
+if (mix.inProduction()) {
+  mix.version()
+}
