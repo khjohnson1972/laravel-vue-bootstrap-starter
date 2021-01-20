@@ -12,10 +12,10 @@ const mix = require('laravel-mix')
  */
 
 mix.sass('resources/sass/app.scss', 'public/css').sourceMaps(false, 'source-map')
-mix.js('resources/js/app.js', 'public/js').vue()
+mix.js('resources/js/app.js', 'public/js').vue({ version: 3 })
 
 mix.sass('resources/sass/admin/admin.scss', 'public/css').sourceMaps(false, 'source-map')
-// mix.js('resources/js/admin.js', 'public/js').vue();
+mix.js('resources/js/admin.js', 'public/js').vue({ version: 3 })
 
 // cache busting in production
 // if (mix.inProduction()) {
