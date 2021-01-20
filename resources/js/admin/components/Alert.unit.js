@@ -7,7 +7,7 @@ describe('Alert.vue Component', () => {
   beforeEach(() => {
     wrapper = shallowMount(Alert, {
       ...createComponentMocks(),
-      propsData: {
+      props: {
         alert: {
           message: 'test'
         }
@@ -15,9 +15,9 @@ describe('Alert.vue Component', () => {
     })
   })
 
-  // destroy the wrapper after each test
+  // unmount is now Vue3 -  the wrapper after each test
   afterEach(() => {
-    wrapper.destroy()
+    wrapper.unmount()
   })
 
   test('exports a valid component', () => {
@@ -28,8 +28,8 @@ describe('Alert.vue Component', () => {
     expect(wrapper.vm.shown).toBe('test')
   })
 
-  test('test shown() returns title', () => {
-    wrapper.setProps({
+  test('test shown() returns title', async () => {
+    await wrapper.setProps({
       alert: {
         title: 'title'
       }
@@ -37,8 +37,8 @@ describe('Alert.vue Component', () => {
     expect(wrapper.vm.shown).toBe('title')
   })
 
-  test('test status() returns class name', () => {
-    wrapper.setProps({
+  test('test status() returns class name', async () => {
+    await wrapper.setProps({
       alert: {
         context: 'success'
       }
