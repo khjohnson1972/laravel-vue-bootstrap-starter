@@ -1,6 +1,6 @@
 ![CI](https://github.com/khjohnson1972/laravel-vue-bootstrap-starter/workflows/CI/badge.svg)
 
-## Laravel 8, Vue.js 2, Bootstrap 4, MySQL 8 Starter
+## Laravel 8, Vue.js 3, Bootstrap 4, MySQL 8 Starter
 
 This is a starter template setup for those looking to get started on a new project. To use this template click, "Use this template" near the top of this page.
 
@@ -8,9 +8,9 @@ This is a starter template setup for those looking to get started on a new proje
 
 * Laravel Auth
 * EsLint
-* Vue-test-utils and Jest
-* Vue and Vuelidate
-* Sample Vue `<contact></contact>` Component with Tests and Code Coverage
+* @vue/test-utils and Jest
+* Vue 3
+* Sample Vue `<example></example>` Component with Tests and Code Coverage
 * Laravel-mix for webpack of assets
 * Phpcs and PSR2 Standard
 * Phpunit with Code Coverage
@@ -56,7 +56,7 @@ This is a starter template setup for those looking to get started on a new proje
 * `npm run test:unit-watch` (Run the unit tests and watch for changes)
 
 #### Run a single jest test
-* `npx cross-env NODE_ENV=test vue-cli-service test:unit --verbose=true resources/js/main/components/Form/Contact.unit.js`
+* `npx cross-env NODE_ENV=test vue-cli-service test:unit --verbose=true resources/js/admin/components/Alert.unit.js`
 
 ### Github Hook
 
