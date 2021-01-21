@@ -24,6 +24,10 @@ describe('Alert.vue Component', () => {
     expect(Alert).toBeAComponent()
   })
 
+  test('matches snapshot', () => {
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
   test('test shown() returns message', () => {
     expect(wrapper.vm.shown).toBe('test')
   })

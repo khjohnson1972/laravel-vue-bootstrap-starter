@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <example></example>
+            <contact></contact>
         </div>
     </div>
 </div>

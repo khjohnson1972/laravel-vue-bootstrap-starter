@@ -6,15 +6,19 @@
 
 import './bootstrap'
 import { createApp } from 'vue'
+import { VuelidatePlugin } from '@vuelidate/core'
 
 // const files = require.context('./main/components', true, /\.vue$/i)
 // files.keys().map(key => window.Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-import Example from './main/components/Example.vue'
+import Contact from './main/components/Contact.vue'
 
 const app = createApp({
   components: {
-    Example
+    Contact
   }
 })
+
+app.use(VuelidatePlugin)
+
 app.mount('#app')

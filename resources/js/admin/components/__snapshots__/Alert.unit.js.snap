@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert.vue Component matches snapshot 1`] = `<div class="alert rounded-0 mb-3 alert-dismissible fade show alert-info" role="alert"><span class="font-weight-bold mr-2"></span><span>test</span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>`;
