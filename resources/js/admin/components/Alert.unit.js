@@ -34,7 +34,9 @@ describe('Alert.vue Component', () => {
         title: 'title'
       }
     })
-    expect(wrapper.vm.shown).toBe('title')
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.vm.shown).toBe('title')
+    })
   })
 
   test('test status() returns class name', () => {
@@ -43,6 +45,8 @@ describe('Alert.vue Component', () => {
         context: 'success'
       }
     })
-    expect(wrapper.vm.status).toBe('alert-success')
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.vm.status).toBe('alert-success')
+    })
   })
 })
