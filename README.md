@@ -19,7 +19,7 @@ This is a starter template setup for those looking to get started on a new proje
 
 ## Installation
 
-* git clone the repository
+* git clone the repository you created after clicking on, "Use this template" above.
 * `composer install -o`
 * `npm install` in development or `npm ci` in production
 * `npm run dev`
